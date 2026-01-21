@@ -50,7 +50,6 @@ export default async function handler(req: any, res: any) {
       user_id: user.id,
       path_id,
       delivery_method,
-      is_paid: false,
       status: 'active',
       current_day : 0,
       secure_token: secureToken,
