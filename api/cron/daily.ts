@@ -29,7 +29,7 @@ const { data: subs } = await supabase
 for (const sub of subs || []) {
     console.log("inside loop: ", sub);
   const link = `${BASE_URL}/todays-path/${sub.secure_token}/${sub.current_day}`;
-    const user = sub.users?.[0]; // get first user
+    const user = sub.users as { email?: string; phone?: string };
     console.log("user: ", user);
   if (!user) continue;
   if (sub.delivery_method === "email" && user.email) {
