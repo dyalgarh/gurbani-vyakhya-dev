@@ -2,6 +2,8 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { supabase } from "../lib/db";
 import { sendEmail } from "../lib/email";
+import { sendSMS } from "../lib/sms";
+
 import crypto from "crypto";
 
 export default async function handler(
@@ -62,6 +64,12 @@ export default async function handler(
       email,
       "Thank you for subscribing 🙏",
       "<p>Your daily Gurbani will start tomorrow.</p>"
+    );
+  }
+  if (phone) {
+    await sendSMS(
+      phone,
+      "Thank you for subscribing to Gurbani Vyakhya!"
     );
   }
 
