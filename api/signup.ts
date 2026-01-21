@@ -59,14 +59,14 @@ export default async function handler(
     });
   }
 
-    if (email) {
+    if (delivery_method === "email" && email) {
     await sendEmail(
       email,
       "Thank you for subscribing 🙏",
       "<p>Your daily Gurbani will start tomorrow.</p>"
     );
   }
-  if (phone) {
+  if (delivery_method === "sms" && phone) {
     await sendSMS(
       phone,
       "Thank you for subscribing to Gurbani Vyakhya!"

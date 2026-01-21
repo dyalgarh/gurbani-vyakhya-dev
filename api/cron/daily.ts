@@ -24,11 +24,16 @@ const { data: subs } = await supabase
   `)
   .eq("status", "active");
 
+  console.log(subs)
+
 for (const sub of subs || []) {
+    console.log("inside loop: ", sub);
   const link = `${BASE_URL}/todays-path/${sub.secure_token}/${sub.current_day}`;
     const user = sub.users?.[0]; // get first user
+    console.log("user: ", user);
   if (!user) continue;
   if (sub.delivery_method === "email" && user.email) {
+console.log("user email: ", user.email);
     await sendEmail(
       user.email,
       "Your daily Gurbani reflection 🙏",
@@ -37,6 +42,7 @@ for (const sub of subs || []) {
   }
 
     if (sub.delivery_method === "sms" && user.phone) {
+        console.log("user phone: ", user.phone);
         await sendSMS(
         user.phone,
         `Your daily Gurbani reflection 🙏\n${link}`
