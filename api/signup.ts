@@ -42,6 +42,8 @@ export default async function handler(req: any, res: any) {
   startDate.setDate(startDate.getDate() + 1)
   const secureToken = crypto.randomUUID()
 
+  console.log(user.id, path_id, delivery_method, secureToken, startDate);
+
   const { error: subError } = await supabase
     .from('subscriptions')
     .insert({
