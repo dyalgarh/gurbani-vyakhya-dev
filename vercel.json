@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/todays-path/:token/:day",
+      "destination": "/todays-path"
+    }
+  ]
+}
