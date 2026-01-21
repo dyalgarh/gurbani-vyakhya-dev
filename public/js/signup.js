@@ -9,7 +9,7 @@ async function submitSignup(payload) {
     const data = await res.json()
 
     if (!data.success) {
-      alert(data.message || 'Something went wrong')
+      alert(data.message || 'Something went wrong message')
       return
     }
 
