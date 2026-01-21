@@ -1,26 +1,26 @@
-// /api/reflect.ts
-import { createClient } from "@supabase/supabase-js";
+// /api/todays-path.ts
 import type { VercelRequest, VercelResponse } from "@vercel/node";
+import { supabase } from "../lib/db";
 
-const supabase = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_PUBLISHABLE_KEY!
-);
-
-export default async function handler(req:VercelRequest, res: VercelResponse) {
+export default async function handler(
+  req: VercelRequest,
+  res: VercelResponse
+) {
   const { token, day } = req.query;
-  const dayRaw = Array.isArray(day) ? day[0] : day;
-  const dayNum = parseInt(dayRaw, 10);
 
-  if (!token || !dayNum || dayNum < 1) {
+  const tokenRaw = Array.isArray(token) ? token[0] : token;
+  const dayRaw = Array.isArray(day) ? day[0] : day;
+  const dayNum = parseInt(dayRaw || "", 10);
+
+  if (!tokenRaw || !dayNum || dayNum < 1) {
     return res.status(400).json({ ok: false, message: "Invalid link" });
   }
 
   // 1️⃣ Get subscription
   const { data: sub } = await supabase
     .from("subscriptions")
-    .select("id, path_id, start_date, status, current_day")
-    .eq("secure_token", token)
+    .select("path_id, status, current_day")
+    .eq("secure_token", tokenRaw)
     .single();
 
   if (!sub || sub.status !== "active") {
@@ -33,7 +33,7 @@ export default async function handler(req:VercelRequest, res: VercelResponse) {
     return res.json({ ok: false, message: "Available later" });
   }
 
-  // 3️⃣ Fetch content
+  // 2️⃣ Fetch content
   const { data: content } = await supabase
     .from("path_content")
     .select("snippet, meaning_pb, meaning_en, reflection")
