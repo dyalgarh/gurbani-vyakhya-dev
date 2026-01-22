@@ -23,8 +23,8 @@ async function submitSignup(payload) {
     alert('Network error')
   }
 }
-const form = document.getElementById("signupForm");
-form.addEventListener("submit", (e) => {
+const signupForm = document.getElementById("signupForm");
+signupForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const action = e.submitter.dataset.action;
   const subscriptionType = 'free'; 
@@ -34,10 +34,10 @@ form.addEventListener("submit", (e) => {
     subscriptionType = 'paid';
   }
   submitSignup({
-    path_id: form.path?.value || '',
-    name: form.name?.value || '',
-    email: form.email?.value || null,
-    phone: form.phone?.value || null,
+    path_id: signupForm.path?.value || '',
+    name: signupForm.name?.value || '',
+    email: signupForm.email?.value || null,
+    phone: signupForm.phone?.value || null,
     delivery_method: document.querySelector('input[name="delivery"]:checked')?.value || 'email',
     subscription_type: subscriptionType
   });
