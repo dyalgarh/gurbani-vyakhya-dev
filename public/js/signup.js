@@ -27,7 +27,7 @@ const signupForm = document.getElementById("signupForm");
 signupForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const action = e.submitter.dataset.action;
-  const subscriptionType = 'free'; 
+  let subscriptionType = 'free'; 
   if (action === 'free') {
     subscriptionType = 'free';
   } else if (action === 'paid') {
