@@ -1,5 +1,3 @@
-const { sign } = require("crypto")
-
 async function submitSignup(payload) {
   try {
     const res = await fetch('/api/signup', {
