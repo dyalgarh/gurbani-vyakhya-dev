@@ -49,77 +49,37 @@
 </head>
 
 <body class="bg-white text-gray-900">
-    <nav class="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div class="text-2xl font-semibold text-gray-900">Gurbani Vyakhya</div>
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="#home" class="text-gray-600 hover:text-gray-900 transition-colors">Home</a>
-                    <a href="#why-understanding" class="text-gray-600 hover:text-gray-900 transition-colors">Why Understanding</a>
-                    <a href="#choose-path" class="text-gray-600 hover:text-gray-900 transition-colors">Paths</a>
-                    <a href="#how-it-works" class="text-gray-600 hover:text-gray-900 transition-colors">How It Works</a>
-                    <a href="#signup" class="text-gray-600 hover:text-gray-900 transition-colors">Begin Journey</a>
-                </div>
-                <!-- Language Toggle & Mobile Menu Button -->
-                <div class="relative flex items-center gap-3">
-  <!-- Language Button -->
-  <button
-    onclick="document.getElementById('lang-dropdown').classList.toggle('hidden')"
-    class="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-gray-900 transition-colors !rounded-button border border-gray-200 hover:border-gray-400 whitespace-nowrap"
-  >
-    <div class="w-4 h-4 flex items-center justify-center">
-      <i class="ri-global-line text-sm"></i>
-    </div>
-    <span class="hidden sm:inline">English</span>
-    <span class="sm:hidden">EN</span>
-  </button>
 
-  <!-- Dropdown -->
-  <div
-    id="lang-dropdown"
-    class="absolute right-0 top-full mt-2 w-32 bg-white border border-gray-200 rounded-md shadow-md hidden z-50"
-  >
-    <button class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">
-      ਪੰਜਾਬੀ
-    </button>
+  <!-- Loader -->
+  <div id="loader" class="min-h-screen flex items-center justify-center text-gray-600">
+    Loading reflection...
   </div>
 
-  <!-- Mobile Menu Button (unchanged) -->
-  <button
-    id="mobile-menu-btn"
-    class="md:hidden w-10 h-10 flex items-center justify-center text-gray-600 hover:text-gray-900 transition-colors"
-  >
-    <i class="ri-menu-line text-xl"></i>
-  </button>
-</div>
-            </div>
-            <!-- Mobile Navigation Menu -->
-            <div id="mobile-menu" class="md:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-200 shadow-lg transform -translate-y-full opacity-0 invisible transition-all duration-300">
-                <div class="px-6 py-4 space-y-4">
-                    <a href="#home" class="block text-gray-600 hover:text-gray-900 transition-colors py-2 mobile-nav-link">Home</a>
-                    <a href="#why-understanding" class="block text-gray-600 hover:text-gray-900 transition-colors py-2 mobile-nav-link">Why Understanding</a>
-                    <a href="#choose-path" class="block text-gray-600 hover:text-gray-900 transition-colors py-2 mobile-nav-link">Paths</a>
-                    <a href="#how-it-works" class="block text-gray-600 hover:text-gray-900 transition-colors py-2 mobile-nav-link">How It Works</a>
-                    <a href="#signup" class="block text-gray-600 hover:text-gray-900 transition-colors py-2 mobile-nav-link">Begin Journey</a>
-                </div>
-            </div>
+  <!-- Message / Error -->
+  <div id="messageBox" class="hidden min-h-screen flex items-center justify-center px-6">
+    <div class="max-w-md text-center bg-gray-50 border border-gray-200 rounded-lg p-6 text-gray-800"></div>
+  </div>
+
+  <!-- Page Content (hidden initially) -->
+  <div id="pageContent" class="hidden">
+
+    <nav class="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
+      <div class="max-w-7xl mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <div class="text-2xl font-semibold text-gray-900">Gurbani Vyakhya</div>
         </div>
+      </div>
     </nav>
+
     <section id="how-it-works" class="py-20 bg-white">
+      <section id="how-it-works" class="py-20 bg-white">
         <div class="max-w-6xl mx-auto bg-white rounded-lg shadow-sm border border-gray-200 p-8">
                 <div class="text-center mb-6">
-                    <h3 class="text-xl font-medium text-gray-900 mb-2">A Sample Daily Reflection</h3>
+                    <h3 class="text-xl font-medium text-gray-900 mb-2">Today's Reflection</h3>
                     <p id="reflection" class="text-sm text-gray-600">Mool Mantar</p>
                 </div>
                 <div class="space-y-6">
                     <div>
-                        <h4 class="font-medium text-gray-900 mb-2 flex items-center gap-2">
-                        <div class="w-4 h-4 flex items-center justify-center">
-                        <i class="ri-quote-text text-gray-800"></i>
-                        </div>
-                        Today's Snippet
-                        </h4>
                         <p id="gurbani" class="text-gray-700 italic text-center bg-gray-50 p-4 rounded border-l-4 border-gray-800">
                             "ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ <br>
                                 ਨਿਰਭਉ ਨਿਰਵੈਰੁ <br>
@@ -185,147 +145,10 @@
                     </div>
                 </div>
             </div>
-        <p id="error"></p>
     </section>
-   
-    <section class="py-20 bg-white">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <div class="mb-12">
-                <h2 class="text-3xl font-light text-gray-900 mb-6">Thank You for Walking This Path</h2>
-                <div class="w-16 h-0.5 bg-primary mx-auto mb-8"></div>
-            </div>
-            <div class="space-y-6 mb-12">
-                <p class="text-lg text-gray-700 leading-relaxed">
-                    Thank you for being here and taking a moment to reflect. This space exists with the intention of making Gurbani easier to understand, reflect upon, and gently bring into daily life.
-                </p>
-                <p class="text-lg text-gray-700 leading-relaxed">
-                    You are encouraged to read each daily reflection slowly, and if possible, share it with your family. Sitting together, even for a few moments, and reflecting with children or elders can help these teachings take root naturally in daily life.
-                </p>
-                <p class="text-lg text-gray-700 leading-relaxed">
-                    If a reflection resonates with you, feel free to share it in your family groups or with loved ones. You may also invite them to join this journey, so understanding and reflection can grow together.
-                </p>
-                <p class="text-lg text-gray-700 leading-relaxed">
-                    Any support offered helps keep this platform running and allows these reflections to be shared with care and continuity. There is no obligation to contribute. Your presence here itself is deeply valued.
-                </p>
-            </div>
-            <button class="px-8 py-4 bg-gray-100 text-gray-700 font-medium !rounded-button hover:bg-gray-200 transition-colors whitespace-nowrap">
-                <div class="flex items-center gap-2">
-                    <div class="w-5 h-5 flex items-center justify-center">
-                        <i class="ri-heart-line"></i>
-                    </div>
-                    Support This Seva
-                </div>
-            </button>
-        </div>
     </section>
-    <footer class="bg-gray-50 border-t border-gray-200 py-12">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="text-gray-600 text-sm">
-                    © 2026 Spiritual Path. All rights reserved.
-                </div>
-                <div class="flex items-center gap-8">
-                    <a href="#" class="text-gray-600 hover:text-gray-900 text-sm transition-colors">About</a>
-                    <a href="#" class="text-gray-600 hover:text-gray-900 text-sm transition-colors">Contact</a>
-                    <a href="#" class="text-gray-600 hover:text-gray-900 text-sm transition-colors">Privacy</a>
-                    <button class="flex items-center gap-2 px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700 transition-colors border border-gray-200 rounded-button">
-                        <div class="w-3 h-3 flex items-center justify-center">
-                            <i class="ri-global-line text-xs"></i>
-                        </div>
-                        English | ਪੰਜਾਬੀ
-                    </button>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <script id="path-selection">
-        document.addEventListener('DOMContentLoaded', function() {
-        const pathCards = document.querySelectorAll('.path-card');
-        const signupSection = document.getElementById('signup');
-        pathCards.forEach(card => {
-        card.addEventListener('click', function() {
-        pathCards.forEach(c => c.classList.remove('ring-2', 'ring-primary'));
-        this.classList.add('ring-2', 'ring-primary');
-        setTimeout(() => {
-        signupSection.scrollIntoView({ behavior: 'smooth' });
-        }, 300);
-        });
-        });
-        });
-    </script>
-    <script id="radio-buttons">
-        document.addEventListener('DOMContentLoaded', function() {
-        const radioInputs = document.querySelectorAll('.delivery-radio');
-        radioInputs.forEach(radio => {
-        radio.addEventListener('change', function() {
-        radioInputs.forEach(r => {
-        const dot = r.parentElement.querySelector('.radio-dot');
-        const custom = r.parentElement.querySelector('.radio-custom');
-        if (r.checked) {
-        dot.style.opacity = '1';
-        custom.style.borderColor = '#000000';
-        } else {
-        dot.style.opacity = '0';
-        custom.style.borderColor = '#d1d5db';
-        }
-        });
-        });
-        });
-        radioInputs[0].dispatchEvent(new Event('change'));
-        });
-    </script>
-    <script id="navigation-mobile">
-        document.addEventListener('DOMContentLoaded', function() {
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-        mobileMenuBtn.addEventListener('click', function() {
-        const isOpen = mobileMenu.style.transform === 'translateY(0px)';
-        if (isOpen) {
-        mobileMenu.style.transform = 'translateY(-100%)';
-        mobileMenu.style.opacity = '0';
-        setTimeout(() => {
-        mobileMenu.style.visibility = 'hidden';
-        }, 300);
-        mobileMenuBtn.querySelector('i').className = 'ri-menu-line text-xl';
-        } else {
-        mobileMenu.style.visibility = 'visible';
-        mobileMenu.style.transform = 'translateY(0px)';
-        mobileMenu.style.opacity = '1';
-        mobileMenuBtn.querySelector('i').className = 'ri-close-line text-xl';
-        }
-        });
-        mobileNavLinks.forEach(link => {
-        link.addEventListener('click', function() {
-        mobileMenu.style.transform = 'translateY(-100%)';
-        mobileMenu.style.opacity = '0';
-        setTimeout(() => {
-        mobileMenu.style.visibility = 'hidden';
-        }, 300);
-        mobileMenuBtn.querySelector('i').className = 'ri-menu-line text-xl';
-        });
-        });
-        });
-    </script>
-    <script id="smooth-scrolling">
-        document.addEventListener('DOMContentLoaded', function() {
-        const allNavLinks = document.querySelectorAll('a[href^="#"]');
-        const choosePathBtns = document.querySelectorAll('button');
-        allNavLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-        targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-        });
-        }
-        });
-        });
-        });
-    </script>
+
+  </div>
 </body>
 
 </html>

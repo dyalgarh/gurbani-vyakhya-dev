@@ -1,42 +1,79 @@
+// UI elements
+const loader = document.getElementById("loader");
+const pageContent = document.getElementById("pageContent");
+const messageBoxWrapper = document.getElementById("messageBox");
+const messageBox = messageBoxWrapper.querySelector("div");
 
+// UI helpers
+function showLoader() {
+  loader.classList.remove("hidden");
+  pageContent.classList.add("hidden");
+  messageBoxWrapper.classList.add("hidden");
+}
+
+function showMessage(msg) {
+  loader.classList.add("hidden");
+  pageContent.classList.add("hidden");
+  messageBox.textContent = msg;
+  messageBoxWrapper.classList.remove("hidden");
+}
+
+function showContent() {
+  loader.classList.add("hidden");
+  messageBoxWrapper.classList.add("hidden");
+  pageContent.classList.remove("hidden");
+}
+
+// ---- URL parsing ----
 const parts = window.location.pathname.split("/").filter(Boolean);
 const token = parts[1];
 const day = parseInt(parts[2], 10);
 
+// ✅ No token/day → show static content immediately
 if (!token || !day) {
-  showError("Invalid link");
+  showContent();
+} else {
+  loadTodaysPath();
 }
 
-fetch(`/api/todays-path?token=${token}&day=${day}`)
-  .then(res => res.json())
-  .then(data => {
-    if (!data.ok) {
-      showError(data.message);
-      return;
-    }
+// ---- Main loader ----
+function loadTodaysPath() {
+  showLoader();
 
-    renderContent(data);
+  fetch(`/api/todays-path?token=${token}&day=${day}`)
+    .then(res => res.json())
+    .then(data => {
+      if (!data.ok) {
+        showMessage(data.message || "Invalid link");
+        return;
+      }
 
-    setupNav(day, data.canGoNext);
-  })
-  .catch(() => showError("Something went wrong"));
+      renderContent(data);
+      setupNav(day, data.canGoNext);
+      showContent();
+    })
+    .catch(() => {
+      showMessage("Something went wrong. Please try again later.");
+    });
+}
 
+// ---- Render functions ----
 function renderContent(data) {
-  document.getElementById("gurbani").innerHTML  = data.snippet;
-  document.getElementById("pb").innerHTML  = data.meaning_pb;
-  document.getElementById("en").innerHTML  = data.meaning_en;
-  document.getElementById("reflection").innerHTML  = data.reflection;
+  document.getElementById("gurbani").innerHTML = data.snippet;
+  document.getElementById("pb").innerHTML = data.meaning_pb;
+  document.getElementById("en").innerHTML = data.meaning_en;
+  document.getElementById("reflection").innerHTML = data.reflection;
 }
 
 function setupNav(day, canGoNext) {
-  if (day > 1) {
-    document.getElementById("prev").href = `/todays-path/${token}/${day - 1}`;
-  }
-  if (canGoNext) {
-    document.getElementById("next").href = `/todays-path/${token}/${day + 1}`;
-  }
-}
+  const prev = document.getElementById("prev");
+  const next = document.getElementById("next");
 
-function showError(msg) {
-  document.getElementById("error").innerText = msg;
+  if (prev && day > 1) {
+    prev.href = `/todays-path/${token}/${day - 1}`;
+  }
+
+  if (next && canGoNext) {
+    next.href = `/todays-path/${token}/${day + 1}`;
+  }
 }
