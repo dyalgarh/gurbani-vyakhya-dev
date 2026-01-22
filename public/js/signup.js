@@ -38,7 +38,7 @@ signupForm.addEventListener("submit", (e) => {
 
   if (deliveryMethod === 'email') {
     phoneValue = null;
-  } else if (deliveryMethod === 'phone') {
+  } else if (deliveryMethod === 'sms') {
     emailValue = null;
   }
   
