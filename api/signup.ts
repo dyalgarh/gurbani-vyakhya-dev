@@ -87,7 +87,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Fetch path to get Stripe price IDs and type
     const { data: path } = await supabase
       .from("paths")
-      .select("stripe_price_id, stripe_recurring_price_id, payment_type")
+      .select("stripe_price_id, payment_type")
       .eq("id", path_id)
       .single();
 
