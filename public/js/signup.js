@@ -26,6 +26,19 @@ function onSignUpClick() {
     name: form.name?.value || '',
     email: form.email?.value || null,
     phone: form.phone?.value || null,
-    delivery_method: document.querySelector('input[name="delivery"]:checked')?.value || 'email'
-  })
+    delivery_method: document.querySelector('input[name="delivery"]:checked')?.value || 'email',
+    payment_type: 'free'
+  });
+}
+
+function onPaidSignUpClick() {
+    const form = document.forms['signupForm']
+  submitSignup({
+    path_id: form.path?.value || '',
+    name: form.name?.value || '',
+    email: form.email?.value || null,
+    phone: form.phone?.value || null,
+    delivery_method: document.querySelector('input[name="delivery"]:checked')?.value || 'email',
+    payment_type: 'paid'
+  });
 }
