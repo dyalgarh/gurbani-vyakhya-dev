@@ -96,12 +96,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // Pick correct price ID based on path's payment_type
-    let priceId: string | undefined;
-    if (path.payment_type === "recurring") {
-      priceId = path.stripe_recurring_price_id;
-    } else {
-      priceId = path.stripe_price_id;
-    }
+    let priceId = path.stripe_price_id;
 
     if (!priceId) {
       return res.status(500).json({ success: false, message: "Stripe price not configured for this path" });
