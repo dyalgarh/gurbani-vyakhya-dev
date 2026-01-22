@@ -10,9 +10,9 @@ export default async function handler(
 
   const tokenRaw = Array.isArray(token) ? token[0] : token;
   const dayRaw = Array.isArray(day) ? day[0] : day;
-  const dayNum = parseInt(dayRaw || "", 10);
+  let dayNum = parseInt(dayRaw || "", 10);
 
-  if (!tokenRaw || !dayNum || dayNum < 1) {
+  if (!tokenRaw) {
     return res.status(400).json({ ok: false, message: "Invalid link" });
   }
 
@@ -27,6 +27,10 @@ export default async function handler(
     return res.json({ ok: false, message: "Not subscribed" });
   }
 
+  // 3️⃣ If day is missing / invalid → use current_day
+  if (!Number.isInteger(dayNum) || dayNum < 1) {
+    dayNum = sub.current_day;
+  }
   const currentDay = sub.current_day;
 
   if (dayNum > currentDay) {

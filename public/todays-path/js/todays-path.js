@@ -27,10 +27,10 @@ function showContent() {
 // ---- URL parsing ----
 const parts = window.location.pathname.split("/").filter(Boolean);
 const token = parts[1];
-const day = parseInt(parts[2], 10);
+const day = parts[2] ? parseInt(parts[2], 10) : null;
 
 // ✅ No token/day → show static content immediately
-if (!token || !day) {
+if (!token) {
   showContent();
 } else {
   loadTodaysPath();
