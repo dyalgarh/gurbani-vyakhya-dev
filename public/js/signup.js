@@ -24,26 +24,23 @@ async function submitSignup(payload) {
   }
 }
 
-function onSignUpClick() {
-    const form = document.forms['signupForm']
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const action = e.submitter.dataset.action;
+  const form = document.getElementById("signupForm");
+  const subscriptionType = 'free'; 
+  if (action === 'free') {
+    subscriptionType = 'free';
+  } else if (action === 'paid') {
+    subscriptionType = 'paid';
+  }
   submitSignup({
     path_id: form.path?.value || '',
     name: form.name?.value || '',
     email: form.email?.value || null,
     phone: form.phone?.value || null,
     delivery_method: document.querySelector('input[name="delivery"]:checked')?.value || 'email',
-    payment_type: 'free'
+    subscription_type: subscriptionType
   });
-}
-
-function onPaidSignUpClick() {
-    const form = document.forms['signupForm']
-  submitSignup({
-    path_id: form.path?.value || '',
-    name: form.name?.value || '',
-    email: form.email?.value || null,
-    phone: form.phone?.value || null,
-    delivery_method: document.querySelector('input[name="delivery"]:checked')?.value || 'email',
-    payment_type: 'paid'
-  });
-}
+  
+});

@@ -14,7 +14,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ success: false, message: "Method not allowed" });
   }
 
-  const { path_id, name, email, phone, delivery_method, payment_type } = req.body;
+  const { path_id, name, email, phone, delivery_method, subscription_type } = req.body;
 
   if (!path_id || !name) {
     return res.status(400).json({ success: false, message: "Missing required fields" });
@@ -68,7 +68,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // 3️⃣ Handle free subscription
-  if (payment_type === "free") {
+  if (subscription_type === "free") {
     if (delivery_method === "email" && email) {
       await sendEmail(email, "Thank you for subscribing 🙏", "<p>Your daily Gurbani will start tomorrow.</p>");
     }
@@ -83,7 +83,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // 4️⃣ Handle paid subscription (support / donation)
-  if (payment_type === "paid") {
+  if (subscription_type === "paid") {
     // Fetch path to get Stripe price IDs and type
     const { data: path } = await supabase
       .from("paths")
