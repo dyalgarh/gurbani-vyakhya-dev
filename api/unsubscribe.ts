@@ -38,5 +38,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(500).json({ success: false, message: "Failed to unsubscribe" });
   }
 
+    // Insert into unsubscribe_logs
+  const { error: logError } = await supabase
+    .from("unsubscribe_logs")
+    .insert({
+      subscription_id: sub.id,
+      reason: "User unsubscribed", // or get this dynamically from request
+    });
+
+  if (logError) {
+    console.error("Failed to log unsubscribe:", logError);
+  }
+
   return res.json({ success: true, message: "Unsubscribed successfully" });
 }
