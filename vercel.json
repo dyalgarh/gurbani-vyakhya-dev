@@ -3,6 +3,10 @@
     {
       "source": "/todays-path/:token/:day",
       "destination": "/todays-path"
+    },
+     {
+      "source": "/unsubscribe/:token",
+      "destination": "/unsubscribe"
     }
   ],
    "crons": [

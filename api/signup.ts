@@ -40,6 +40,7 @@ export default async function handler(
 
   // 2️⃣ Create subscription
   const secureToken = crypto.randomUUID();
+  const unsubscribeToken = crypto.randomUUID();
 
   const { error: subError } = await supabase
     .from("subscriptions")
@@ -49,7 +50,8 @@ export default async function handler(
       delivery_method,
       status: "active",
       current_day: 0,
-      secure_token: secureToken
+      secure_token: secureToken,
+      unsubscribe_token: unsubscribeToken
     });
 
   if (subError) {
