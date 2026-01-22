@@ -31,13 +31,23 @@ const signupForm = document.getElementById("signupForm");
 signupForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const action = e.submitter.dataset.action;
+  let deliveryMethod = document.querySelector('input[name="delivery"]:checked')?.value || 'email';
+  // Set email or phone to null based on delivery method
+  let emailValue = signupForm.email?.value || null;
+  let phoneValue = signupForm.phone?.value || null;
+
+  if (deliveryMethod === 'email') {
+    phoneValue = null;
+  } else if (deliveryMethod === 'phone') {
+    emailValue = null;
+  }
+  
   submitSignup({
     path_id: signupForm.path?.value || '',
     name: signupForm.name?.value || '',
-    email: signupForm.email?.value || null,
-    phone: signupForm.phone?.value || null,
-    delivery_method: document.querySelector('input[name="delivery"]:checked')?.value || 'email',
+    email: emailValue,
+    phone: phoneValue,
+    delivery_method: deliveryMethod,
     subscription_type: action === 'paid' ? 'paid' : 'free',
   });
-  
 });
