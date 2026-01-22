@@ -27,19 +27,13 @@ const signupForm = document.getElementById("signupForm");
 signupForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const action = e.submitter.dataset.action;
-  let subscriptionType = 'free'; 
-  if (action === 'free') {
-    subscriptionType = 'free';
-  } else if (action === 'paid') {
-    subscriptionType = 'paid';
-  }
   submitSignup({
     path_id: signupForm.path?.value || '',
     name: signupForm.name?.value || '',
     email: signupForm.email?.value || null,
     phone: signupForm.phone?.value || null,
     delivery_method: document.querySelector('input[name="delivery"]:checked')?.value || 'email',
-    subscription_type: subscriptionType
+    subscription_type: action === 'paid' ? 'paid' : 'free',
   });
   
 });
