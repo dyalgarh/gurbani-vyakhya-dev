@@ -23,11 +23,10 @@ async function submitSignup(payload) {
     alert('Network error')
   }
 }
-
+const form = document.getElementById("signupForm");
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   const action = e.submitter.dataset.action;
-  const form = document.getElementById("signupForm");
   const subscriptionType = 'free'; 
   if (action === 'free') {
     subscriptionType = 'free';
