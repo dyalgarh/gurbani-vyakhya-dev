@@ -1,3 +1,5 @@
+const { sign } = require("crypto")
+
 async function submitSignup(payload) {
   try {
     const res = await fetch('/api/signup', {
@@ -12,13 +14,17 @@ async function submitSignup(payload) {
       alert(data.message || 'Something went wrong message')
       return
     }
-    if (data.success && data.checkout_url) {
-    // Redirect user to Stripe Checkout
-    window.location.href = data.checkout_url;
-  } else{
+    else{
+        signupForm.reset();
+        if (data.success && data.checkout_url) {
+            // Redirect user to Stripe Checkout
+            window.location.href = data.checkout_url;
+          } else{
 
-    alert(data.message)
-  }
+            alert(data.message)
+          }
+    }
+    
   } catch (e) {
     alert('Network error')
   }
