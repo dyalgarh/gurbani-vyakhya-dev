@@ -45,7 +45,7 @@
         font-family: 'Inter', sans-serif;
         }
     </style>
-    <script src="/thank-you/js/thank-you.js" defer></script>
+    <script src="/cancel/js/cancel.js" defer></script>
 </head>
 <body class="bg-white text-gray-900">
 
@@ -56,52 +56,46 @@
     </div>
   </nav>
 
-  <!-- Thank You Section -->
+  <!-- Cancellation / Thank You Section -->
   <section class="py-20 bg-white">
-    <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-sm border border-gray-200 p-8 space-y-8">
+    <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-sm border border-gray-200 p-8 text-center space-y-6">
 
-      <!-- Common Thank You (Everyone) -->
-      <div class="text-center">
-        <h2 class="text-2xl font-semibold text-gray-900 mb-3">
-          Thank You 🙏
-        </h2>
-        <p class="text-gray-700 leading-relaxed">
-          Your journey with Gurbani Vyakhya means a lot to us.
-          This space is created to help you pause, reflect, and
-          stay connected with the wisdom of Gurbani in everyday life.
-        </p>
+      <h2 class="text-2xl font-semibold text-gray-900">
+        Thank You 🙏
+      </h2>
+
+      <p class="text-gray-700 leading-relaxed">
+        Your payment could not be completed, but we truly appreciate
+        that you took the time to try. It means a lot to us.
+      </p>
+
+      <p class="text-gray-700 leading-relaxed">
+        You are already subscribed, and you will continue to receive
+        your daily Gurbani Path and reflections as planned.
+      </p>
+
+      <p class="text-gray-700 leading-relaxed">
+        If at any point you wish to support this seva further,
+        you are welcome to contribute through a donation.
+      </p>
+
+      <!-- Donation Button -->
+      <div class="pt-4">
+        <a
+          href="/donate"
+          class="inline-flex items-center justify-center px-6 py-3 text-sm font-medium text-white bg-gray-900 rounded-md hover:bg-gray-800 transition"
+        >
+          Donate & Support Seva
+        </a>
       </div>
 
-      <!-- Paid Subscriber Section (Hidden by default) -->
-      <div id="paidSection" class="hidden border-t border-gray-200 pt-6">
-        <h3 class="text-xl font-medium text-gray-900 mb-2 flex items-center gap-2">
-          <i class="ri-heart-2-line text-gray-700"></i>
-          A Special Thank You
-        </h3>
-        <p class="text-gray-700 leading-relaxed">
-          Your support helps keep this seva alive.
-          Because of you, we are able to continue sharing
-          deeper reflections, daily guidance, and meaningful
-          Gurbani explanations with sincerity and care.
-        </p>
-        <p class="text-gray-700 mt-3">
-          May this journey bring clarity, peace, and steadiness
-          into your life.
-        </p>
-      </div>
+      <p class="text-sm text-gray-500 pt-2">
+        Thank you for being part of this journey.
+      </p>
 
     </div>
   </section>
 
-  <!-- JS -->
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const isPaid = params.get("paid"); // e.g. ?paid=true
-
-    if (isPaid === "true") {
-      document.getElementById("paidSection").classList.remove("hidden");
-    }
-  </script>
-
 </body>
+
 </html>

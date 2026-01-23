@@ -19,7 +19,7 @@ async function submitSignup(payload) {
             window.location.href = data.checkout_url;
           } else{
 
-            alert(data.message)
+            window.location.href = "/thank-you";
           }
     }
     
