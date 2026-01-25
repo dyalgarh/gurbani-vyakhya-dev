@@ -48,8 +48,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     .eq("path_id", path_id)
     .single();
 
+    if (existingSub && existingSub.status === "active") {
+      return res.status(200).json({ success: false, message: "You’re already subscribed to this path. If you’re not seeing any emails, please check your spam folder." });
+    }
+
+  let subscriptionId = "";
+
   if (!existingSub) {
-    const { error: subError } = await supabase
+    const { data: subscriptionData, error: subError } = await supabase
       .from("subscriptions")
       .insert({
         user_id: user.id,
@@ -60,11 +66,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         secure_token: secureToken,
         unsubscribe_token: unsubscribeToken,
         is_paid: false
-      });
+      })
+      .select()
+      .single();
 
     if (subError) {
       return res.status(400).json({ success: false, message: "Subscription creation failed" });
     }
+
+    subscriptionId = subscriptionData?.id;
   }
 
   // 3️⃣ Handle free subscription
@@ -117,6 +127,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       metadata: {
         user_id: user.id,
         path_id,
+        subscription_id: String(subscriptionId),
+        payment_type: path.payment_type, 
       },
     });
 
