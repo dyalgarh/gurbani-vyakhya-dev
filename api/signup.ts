@@ -80,7 +80,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // 3️⃣ Notify Users
     const { data: pathContent, error: pathError } = await supabase
       .from("paths")
-      .select("name, thank_you_email_subject, thank_you_email_body_html")
+      .select("thank_you_sms_text, thank_you_email_subject, thank_you_email_body_html")
       .eq("id", path_id)
       .single();
 
@@ -95,7 +95,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           );
       }
     if (delivery_method === "sms" && phone) {
-      await sendSMS(phone, pathContent?.thank_you_email_subject +" Your daily Gurbani will start tomorrow." || "Thank you for subscribing 🙏 Your daily Gurbani will start tomorrow.");
+      await sendSMS(phone, pathContent?.thank_you_sms_text || "Thank you for subscribing 🙏 Your daily Gurbani will start tomorrow.");
     }
 
   // 4️⃣ Handle free subscription
