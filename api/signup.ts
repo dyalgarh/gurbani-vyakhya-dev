@@ -77,22 +77,36 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     subscriptionId = subscriptionData?.id;
   }
 
-  // 3️⃣ Handle free subscription
-  if (subscription_type === "free") {
-    if (delivery_method === "email" && email) {
-      await sendEmail(email, "Thank you for subscribing 🙏", "<p>Your daily Gurbani will start tomorrow.</p>");
+    // 3️⃣ Notify Users
+    const { data: pathContent, error: pathError } = await supabase
+      .from("paths")
+      .select("name, thank_you_email_subject, thank_you_email_body_html")
+      .eq("id", path_id)
+      .single();
+
+    if (pathError) {
+      console.error("Failed to fetch email content", pathError);
     }
+    if (delivery_method === "email" && email) {
+      await sendEmail(
+        email,
+          pathContent?.thank_you_email_subject || "Thank you for subscribing 🙏",
+          pathContent?.thank_you_email_body_html || "<p>Your daily Gurbani will start tomorrow.</p>"
+          );
+      }
     if (delivery_method === "sms" && phone) {
-      await sendSMS(phone, "Thank you for subscribing to Gurbani Vyakhya!");
+      await sendSMS(phone, pathContent?.thank_you_email_subject +" Your daily Gurbani will start tomorrow." || "Thank you for subscribing 🙏 Your daily Gurbani will start tomorrow.");
     }
 
+  // 4️⃣ Handle free subscription
+  if (subscription_type === "free") {
     return res.json({
       success: true,
       message: "Subscription created. Reflections will start from tomorrow."
     });
   }
 
-  // 4️⃣ Handle paid subscription (support / donation)
+  // 5️⃣ Handle paid subscription (support / donation)
   if (subscription_type === "paid") {
     // Fetch path to get Stripe price IDs and type
     const { data: path } = await supabase

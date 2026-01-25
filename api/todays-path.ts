@@ -40,7 +40,7 @@ export default async function handler(
   // 2️⃣ Fetch content
   const { data: content } = await supabase
     .from("path_content")
-    .select("snippet, meaning_pb, meaning_en, reflection")
+    .select("gurbani, meaning_pb, meaning_en, gurbani_header")
     .eq("path_id", sub.path_id)
     .eq("day_number", dayNum)
     .single();

@@ -59,10 +59,10 @@ function loadTodaysPath() {
 
 // ---- Render functions ----
 function renderContent(data) {
-  document.getElementById("gurbani").innerHTML = data.snippet;
+  document.getElementById("gurbani_header").innerHTML = data.gurbani_header;
+  document.getElementById("gurbani").innerHTML = data.gurbani;
   document.getElementById("pb").innerHTML = data.meaning_pb;
   document.getElementById("en").innerHTML = data.meaning_en;
-  document.getElementById("reflection").innerHTML = data.reflection;
 }
 
 function setupNav(day, canGoNext) {
