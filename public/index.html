@@ -44,6 +44,24 @@
         body {
         font-family: 'Inter', sans-serif;
         }
+        .faq-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+    }
+    
+    .faq-item.active .faq-content {
+        max-height: 600px;
+    }
+    
+    .faq-icon {
+        transition: transform 0.3s ease-out;
+        flex-shrink: 0;
+    }
+    
+    .faq-item.active .faq-icon {
+        transform: rotate(180deg);
+    }
     </style>
     <script src="js/signup.js" defer></script>
 </head>
@@ -246,6 +264,100 @@ Don’t just read Gurbani.<br>
             </div>
         </div>
     </section>
+    <section id="faq" class="py-20 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-light text-gray-900 mb-6">Frequently Asked Questions</h2>
+            <div class="w-16 h-0.5 bg-black mx-auto mb-8"></div>
+            <p class="text-lg text-gray-700">
+                Find answers to common questions about our daily reflections and paths.
+            </p>
+        </div>
+
+        <div class="space-y-4">
+            <div class="faq-item bg-white border border-gray-200 rounded-lg overflow-hidden">
+                <button class="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                    <h3 class="text-lg font-medium text-gray-900 text-left">How does this work?</h3>
+                    <i class="ri-chevron-down-line text-xl text-gray-600 faq-icon"></i>
+                </button>
+                <div class="faq-content">
+                    <div class="px-6 pb-4 text-gray-700 space-y-4">
+                        <p>
+                            When you subscribe to a path, you receive one portion of that path each day — such as a pauri, shabad, or section — delivered in sequence until the path is complete. Messages are sent to you via email or SMS, based on your chosen delivery method.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item bg-white border border-gray-200 rounded-lg overflow-hidden">
+                <button class="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                    <h3 class="text-lg font-medium text-gray-900 text-left">What will I receive daily?</h3>
+                    <i class="ri-chevron-down-line text-xl text-gray-600 faq-icon"></i>
+                </button>
+                <div class="faq-content">
+                    <div class="px-6 pb-4 text-gray-700 space-y-4">
+                        <p>
+                            Each day, you will receive one portion from your subscribed path — such as a pauri, salok, shabad, or section — shared in sequence until the path is complete. Along with it, you’ll receive a thoughtful explanation in Punjabi and English, helping you connect with its deeper meaning. You can view the example <a href="/todays-path" class="text-primary underline">here</a>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item bg-white border border-gray-200 rounded-lg overflow-hidden">
+                <button class="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                    <h3 class="text-lg font-medium text-gray-900 text-left">Why do we share one portion a day instead of the entire path at once?</h3>
+                    <i class="ri-chevron-down-line text-xl text-gray-600 faq-icon"></i>
+                </button>
+                <div class="faq-content">
+                    <div class="px-6 pb-4 text-gray-700 space-y-4">
+                        <p>
+                            Gurbani carries wisdom that is vast and deep. Sharing one portion each day allows time to reflect, absorb, and connect with its meaning without rushing. This gentle pace helps the teachings settle into daily life, rather than becoming just another text to finish.
+                        </p>
+                    </div>
+                </div>
+            </div>
+             <div class="faq-item bg-white border border-gray-200 rounded-lg overflow-hidden">
+                <button class="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                    <h3 class="text-lg font-medium text-gray-900 text-left">Can I subscribe to multiple paths?</h3>
+                    <i class="ri-chevron-down-line text-xl text-gray-600 faq-icon"></i>
+                </button>
+                <div class="faq-content">
+                    <div class="px-6 pb-4 text-gray-700 space-y-4">
+                        <p>
+                            Yes, you can subscribe to multiple paths. However, for beginners, we recommend starting with one path at a time. This helps you avoid feeling overwhelmed and allows you to apply the learnings and reflections more meaningfully in your daily life.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item bg-white border border-gray-200 rounded-lg overflow-hidden">
+                <button class="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                    <h3 class="text-lg font-medium text-gray-900 text-left">What is the difference between free and paid subscriptions?</h3>
+                    <i class="ri-chevron-down-line text-xl text-gray-600 faq-icon"></i>
+                </button>
+                <div class="faq-content">
+                    <div class="px-6 pb-4 text-gray-700 space-y-4">
+                        <p>
+                            There is no difference in the content you receive. Both free and paid subscribers receive the same daily portions of the path, shared with explanations in Punjabi and English. Paid subscriptions are simply a way to support this seva and help keep the platform running.
+                        </p>
+                    </div>
+                </div>
+            </div>
+             <div class="faq-item bg-white border border-gray-200 rounded-lg overflow-hidden">
+                <button class="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors" onclick="toggleFaq(this)">
+                    <h3 class="text-lg font-medium text-gray-900 text-left">Can I receive the complete path with explanations at once?</h3>
+                    <i class="ri-chevron-down-line text-xl text-gray-600 faq-icon"></i>
+                </button>
+                <div class="faq-content">
+                    <div class="px-6 pb-4 text-gray-700 space-y-4">
+                        <p>
+                            Yes. If you would like the full path with explanations, you can request it by emailing info@gurbanivyakhya.com
+, and we will share a complete PDF with you.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
     <section id="how-it-works" class="py-20 bg-white">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
@@ -280,103 +392,149 @@ Don’t just read Gurbani.<br>
             </div>
         </div>
     </section>
-    <section class="py-20 bg-gray-50" id="signup">
-        <div class="max-w-2xl mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-4xl font-light text-gray-900 mb-6">Begin Your Journey</h2>
-                <div class="w-16 h-0.5 bg-primary mx-auto mb-8"></div>
-                <p class="text-lg text-gray-700">
-                    Select a path to receive a gentle daily reflection, shared slowly to support understanding and practice.
-                </p>
-            </div>
-<form id="signupForm" class="bg-white border border-gray-200 rounded-lg p-8 shadow-sm">
-  <div class="space-y-6">
-    <!-- Path -->
-    <div>
-      <label class="block text-sm font-medium text-gray-700 mb-2">Path</label>
-      <div class="relative">
-        <select name="path" class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 bg-white pr-8 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-gray-900" required>
-          <option value="">Choose a Path to Begin</option>
-          <option value="4d23e05e-2409-4c61-8c62-0637e8afa6bd">Japji Sahib</option>
-          <option value="b770f174-4e9b-445f-a78e-816e735b2707">Rehras Sahib</option>
-          <option value="cae8f2ab-b65b-4bd3-9d62-042b7a164faa">Sukhmani Sahib</option>
-          <option value="d392d5f8-266e-404a-823a-791a103532be">Anand Sahib</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Name -->
-    <div>
-      <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
-      <input type="text" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-gray-900" placeholder="Your name" required>
-    </div>
-
-    <!-- Delivery Preference -->
-    <div>
-      <label class="block text-sm font-medium text-gray-700 mb-3">Delivery Preference</label>
-      <div class="flex gap-6">
-        <label class="flex items-center cursor-pointer">
-          <div class="relative">
-            <input type="radio" name="delivery" value="email" class="sr-only delivery-radio" required>
-            <div class="w-5 h-5 border-2 border-gray-300 rounded-full flex items-center justify-center radio-custom">
-              <div class="w-2.5 h-2.5 bg-primary rounded-full opacity-0 radio-dot"></div>
-            </div>
-          </div>
-          <span class="ml-3 text-gray-700">Email</span>
-        </label>
-        <label class="flex items-center cursor-pointer">
-          <div class="relative">
-            <input type="radio" name="delivery" value="sms" class="sr-only delivery-radio">
-            <div class="w-5 h-5 border-2 border-gray-300 rounded-full flex items-center justify-center radio-custom">
-              <div class="w-2.5 h-2.5 bg-primary rounded-full opacity-0 radio-dot"></div>
-            </div>
-          </div>
-          <span class="ml-3 text-gray-700">SMS</span>
-        </label>
-      </div>
-    </div>
-
-    <!-- Email Field (shown only if delivery=email) -->
-    <div id="emailField" class="hidden">
-      <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-      <input type="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-gray-900" placeholder="your@email.com">
-    </div>
-
-    <!-- Phone Field (shown only if delivery=sms) -->
-    <div id="phoneField" class="hidden">
-      <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
-      <div class="flex gap-2">
-        <!-- Country code dropdown -->
-        <select name="countryCode" class="px-3 py-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-gray-900">
-          <option value="+1">+1</option>
-          <option value="+91">+91</option>
-          <option value="+44">+44</option>
-          <!-- Add more as needed -->
-        </select>
-        <!-- Number input -->
-        <input type="tel" name="phone" class="flex-1 px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-gray-900" placeholder="Your phone number">
-      </div>
-    </div>
-
-    <!-- Pricing & Support -->
-    <div class="bg-gray-50 p-6 rounded-lg">
-      <h3 class="font-medium text-gray-900 mb-3">Pricing & Support</h3>
-      <p class="text-sm text-gray-700 mb-4">
-        Your contributions help us maintain this platform and create more spiritual paths. However, we believe spiritual guidance should be accessible to all, regardless of financial situation.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-3">
-        <button type="submit" data-action="paid" class="flex-1 py-3 px-6 bg-primary text-white font-medium !rounded-button hover:bg-gray-800 transition-colors whitespace-nowrap">
-          Support & Subscribe ($9)
-        </button>
-        <button type="submit" data-action="free" class="flex-1 py-3 px-6 border-2 border-gray-300 text-gray-700 font-medium !rounded-button hover:border-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">
-          Subscribe for Free
-        </button>
-      </div>
-    </div>
-  </div>
-</form>
+<section class="py-20 bg-gray-50" id="signup">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-4xl font-light text-gray-900 mb-6">Begin Your Journey</h2>
+            <div class="w-16 h-0.5 bg-primary mx-auto mb-8"></div>
+            <p class="text-lg text-gray-700">
+                Select a path to receive a gentle daily reflection, shared slowly to support understanding and practice.
+            </p>
         </div>
-    </section>
+
+        <!-- Form and Note Container -->
+        <div class="grid md:grid-cols-5 gap-6 items-stretch">
+            
+            <!-- Form Section (60%) -->
+            <div class="md:col-span-3">
+                <form id="signupForm" class="bg-white border border-gray-200 rounded-lg p-8 shadow-sm h-full flex flex-col">
+                    <div class="space-y-6 flex-grow">
+                        <!-- Path -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Path</label>
+                            <div class="relative">
+                                <select name="path" class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 bg-white pr-8 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-gray-900" required>
+                                    <option value="">Choose a Path to Begin</option>
+                                    <option value="4d23e05e-2409-4c61-8c62-0637e8afa6bd">Japji Sahib</option>
+                                    <option value="b770f174-4e9b-445f-a78e-816e735b2707">Rehras Sahib</option>
+                                    <option value="cae8f2ab-b65b-4bd3-9d62-042b7a164faa">Sukhmani Sahib</option>
+                                    <option value="d392d5f8-266e-404a-823a-791a103532be">Anand Sahib</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Name -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                            <input type="text" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-gray-900" placeholder="Your name" required>
+                        </div>
+
+                        <!-- Delivery Preference -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-3">Delivery Preference</label>
+                            <div class="flex gap-6">
+                                <label class="flex items-center cursor-pointer">
+                                    <div class="relative">
+                                        <input type="radio" name="delivery" value="email" class="sr-only delivery-radio" required>
+                                        <div class="w-5 h-5 border-2 border-gray-300 rounded-full flex items-center justify-center radio-custom">
+                                            <div class="w-2.5 h-2.5 bg-primary rounded-full opacity-0 radio-dot"></div>
+                                        </div>
+                                    </div>
+                                    <span class="ml-3 text-gray-700">Email</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <div class="relative">
+                                        <input type="radio" name="delivery" value="sms" class="sr-only delivery-radio">
+                                        <div class="w-5 h-5 border-2 border-gray-300 rounded-full flex items-center justify-center radio-custom">
+                                            <div class="w-2.5 h-2.5 bg-primary rounded-full opacity-0 radio-dot"></div>
+                                        </div>
+                                    </div>
+                                    <span class="ml-3 text-gray-700">SMS</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Email Field (shown only if delivery=email) -->
+                        <div id="emailField" class="hidden">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-gray-900" placeholder="your@email.com">
+                        </div>
+
+                        <!-- Phone Field (shown only if delivery=sms) -->
+                        <div id="phoneField" class="hidden">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                            <div class="flex gap-2">
+                                <!-- Country code dropdown -->
+                                <select name="countryCode" class="px-3 py-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-gray-900">
+                                    <option value="+1">+1</option>
+                                    <option value="+91">+91</option>
+                                    <option value="+44">+44</option>
+                                    <!-- Add more as needed -->
+                                </select>
+                                <!-- Number input -->
+                                <input type="tel" name="phone" class="flex-1 px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-gray-900" placeholder="Your phone number">
+                            </div>
+                        </div>
+
+                        <!-- Pricing & Support -->
+                        <div class="bg-gray-50 p-6 rounded-lg">
+                            <h3 class="font-medium text-gray-900 mb-3">Pricing & Support</h3>
+                            <p class="text-sm text-gray-700 mb-4">
+                                Your contributions help us maintain this platform and create more spiritual paths. However, we believe spiritual guidance should be accessible to all, regardless of financial situation.
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-3">
+                                <button type="submit" data-action="paid" class="flex-1 py-3 px-6 bg-primary text-white font-medium !rounded-button hover:bg-gray-800 transition-colors whitespace-nowrap">
+                                    Support & Subscribe ($9)
+                                </button>
+                                <button type="submit" data-action="free" class="flex-1 py-3 px-6 border-2 border-gray-300 text-gray-700 font-medium !rounded-button hover:border-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">
+                                    Subscribe for Free
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Note and Contact Section (40%) -->
+            <div class="md:col-span-2">
+                <div class="bg-black text-white rounded-lg p-8 h-full flex flex-col justify-between shadow-sm">
+                    <!-- Note Content -->
+                    <div>
+                        <div class="flex items-center gap-2 mb-4">
+                            <i class="ri-information-line text-2xl"></i>
+                            <h3 class="text-xl font-medium">A Note on Our Reflections</h3>
+                        </div>
+                        <div class="space-y-4 text-sm leading-relaxed text-gray-300">
+                            <p>
+                                We have made our sincere effort to provide the most accurate and meaningful interpretations of Gurbani. Our team works with deep respect and care to ensure each reflection captures the essence and spirit of the teachings.
+                            </p>
+                            <p>
+                                However, we recognize that the profound wisdom of Gurbani can be understood in many ways, and meanings may vary based on context, perspective, and experience.
+                            </p>
+                            <p>
+                                <span class="text-white font-medium">If you find any discrepancies, errors, or feel that a meaning differs from your understanding,</span> we sincerely apologize. Your feedback is invaluable in helping us improve.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Contact Information -->
+                    <div class="border-t border-gray-700 pt-6">
+                        <p class="text-sm text-gray-400 mb-3">Please reach out to us:</p>
+                        <div class="bg-gray-900 rounded-lg p-4">
+                            <p class="text-white font-mono text-lg font-semibold">
+                                info@gurbanivyakhya.com
+                            </p>
+                            <p class="text-xs text-gray-400 mt-2">
+                                We'd love to hear from you and make things better.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
     <section class="py-20 bg-white">
         <div class="max-w-4xl mx-auto px-6 text-center">
             <div class="mb-12">

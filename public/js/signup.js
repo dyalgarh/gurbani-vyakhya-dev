@@ -51,3 +51,19 @@ signupForm.addEventListener("submit", (e) => {
     subscription_type: action === 'paid' ? 'paid' : 'free',
   });
 });
+
+
+function toggleFaq(button) {
+        const faqItem = button.parentElement;
+        const isActive = faqItem.classList.contains('active');
+        
+        // Close all other FAQs
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Toggle current FAQ
+        if (!isActive) {
+            faqItem.classList.add('active');
+        }
+    }
