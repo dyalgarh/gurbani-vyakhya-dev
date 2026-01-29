@@ -37,7 +37,10 @@ export default async function handler(
       return res.json({ ok: false, message: "Not subscribed" });
     }
 
+    console.log(sub);
+
     const pathType = (sub.paths as any)?.[0]?.content_type;
+    console.log(pathType);
 
     // 🔹 Progressive paths
     if (pathType === "progressive") {
