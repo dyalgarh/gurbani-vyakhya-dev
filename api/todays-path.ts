@@ -39,7 +39,7 @@ export default async function handler(
 
     console.log(sub);
 
-    const pathType = (sub.paths as any)?.[0]?.content_type;
+    const pathType = (sub.paths as any)?.content_type;
     console.log(pathType);
 
     // 🔹 Progressive paths
