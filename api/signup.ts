@@ -95,7 +95,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           );
       }
     if (delivery_method === "sms" && phone) {
-      await sendSMS(phone, pathContent?.thank_you_sms_text || "Thank you for subscribing 🙏 Your daily Gurbani will start tomorrow.");
+      const smsText = pathContent?.thank_you_sms_text  || "Thank you for subscribing 🙏 You'll start receiving the daily Path from tomorrow.";
+      await sendSMS(phone, smsText);
     }
 
   // 4️⃣ Handle free subscription

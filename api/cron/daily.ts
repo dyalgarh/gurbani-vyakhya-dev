@@ -7,6 +7,13 @@ export default async function handler(
   req: VercelRequest,
   res: VercelResponse
 ) {
+
+  const token = req.headers["x-cron-token"] || req.query.secret;
+
+  if (!token || token !== process.env.DAILY_CRON_SECRET) {
+    return res.status(401).json({ ok: false, message: "Unauthorized" });
+  }
+
   await supabase.rpc("increment_current_day");
 
   const BASE_URL = process.env.BASE_URL!;
@@ -20,15 +27,22 @@ const { data: subs } = await supabase
     secure_token,
     current_day,
     delivery_method,
-    users ( email, phone )
+    users ( email, phone ),
+    paths (content_type, total_days )
   `)
   .eq("status", "active");
 
 for (const sub of subs || []) {
   console.log("inside loop: ", sub);
 
-  const link = `${BASE_URL}/todays-path/${sub.secure_token}/${sub.current_day}`;
+  let link = `${BASE_URL}/todays-path/${sub.secure_token}`;
   const user = sub.users as { email?: string; phone?: string };
+  const content_type = (sub.paths as any)?.content_type ?? "progressive";
+
+  if (content_type === "progressive") {
+    link = `${link}/${sub.current_day}`;
+  }
+
   if (!user) continue;
 
   let deliveryStatus = "success";

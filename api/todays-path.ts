@@ -37,13 +37,11 @@ export default async function handler(
       return res.json({ ok: false, message: "Not subscribed" });
     }
 
-    console.log(sub);
 
-    const pathType = (sub.paths as any)?.content_type;
-    console.log(pathType);
+    const contentType = (sub.paths as any)?.content_type ?? "progressive";
 
     // 🔹 Progressive paths
-    if (pathType === "progressive") {
+    if (contentType === "progressive") {
       const currentDay = sub.current_day;
 
       // Use current_day if day is missing or invalid
@@ -74,7 +72,7 @@ export default async function handler(
     }
 
     // 🔹 Daily paths
-    if (pathType === "daily") {
+    if (contentType === "daily") {
       // Get the last created content for this path
       const { data: lastContent, error: lastContentError } = await supabase
         .from("path_content")
