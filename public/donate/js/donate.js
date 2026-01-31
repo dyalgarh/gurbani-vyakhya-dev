@@ -1,3 +1,51 @@
+const isAnonymous = document.getElementById("isAnonymous");
+const nameInput = document.querySelector("input[name='name']");
+const emailInput = document.querySelector("input[name='email']");
+
+isAnonymous.addEventListener("change", () => {
+  if (isAnonymous.checked) {
+    // Disable & clear inputs
+    nameInput.value = "";
+    emailInput.value = "";
+    nameInput.disabled = true;
+    emailInput.disabled = true;
+    nameInput.removeAttribute("required");
+    emailInput.removeAttribute("required");
+  } else {
+    // Enable inputs & make required
+    nameInput.disabled = false;
+    emailInput.disabled = false;
+    nameInput.setAttribute("required", "required");
+    emailInput.setAttribute("required", "required");
+  }
+});
+
+
+
+
+const buttons = document.querySelectorAll(".amount-btn");
+    const customAmount = document.getElementById("customAmount");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        // Clear all highlights
+        buttons.forEach(b => b.classList.remove("bg-white", "text-black", "border-white"));
+
+        // Highlight selected
+        btn.classList.add("bg-white", "text-black", "border-white");
+
+        // Set value
+        customAmount.value = btn.dataset.amount;
+      });
+    });
+
+    // If user types custom amount, remove highlight from preset buttons
+    customAmount.addEventListener("input", () => {
+      buttons.forEach(b => b.classList.remove("bg-white", "text-black", "border-white"));
+    });
+
+
+
 const form = document.getElementById("donateForm");
 
 form.addEventListener("submit", async (e) => {
