@@ -20,7 +20,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       },
       quantity: 1
     }],
-    success_url: `${BASE_URL}/thank-you?session_id={CHECKOUT_SESSION_ID}`,
+    success_url: `${BASE_URL}/donation-thank-you`,
     cancel_url: `${BASE_URL}/cancel`,
   });
 
