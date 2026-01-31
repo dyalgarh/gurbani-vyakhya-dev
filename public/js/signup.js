@@ -1,4 +1,4 @@
-async function submitSignup(payload) {
+async function submitSignup(payload, buttonText) {
   try {
     const res = await fetch('/api/signup', {
       method: 'POST',
@@ -9,7 +9,12 @@ async function submitSignup(payload) {
     const data = await res.json()
 
     if (!data.success) {
-      alert(data.message || 'Something went wrong message')
+      errorContainer.textContent = data.message || "An error occurred.";
+      errorContainer.classList.remove("hidden");
+
+      // Re-enable button and restore text
+      submitButton.disabled = false;
+      submitButton.textContent = buttonText;
       return
     }
     else{
@@ -30,6 +35,14 @@ async function submitSignup(payload) {
 const signupForm = document.getElementById("signupForm");
 signupForm.addEventListener("submit", (e) => {
   e.preventDefault();
+  errorContainer.classList.add("hidden");
+  errorContainer.textContent = "";
+  const submitButton = e.submitter; // button clicked
+  const originalText = submitButton.textContent;
+
+  submitButton.disabled = true;
+  submitButton.textContent = "Processing...";
+
   const action = e.submitter.dataset.action;
   let deliveryMethod = document.querySelector('input[name="delivery"]:checked')?.value || 'email';
   // Set email or phone to null based on delivery method
@@ -49,7 +62,7 @@ signupForm.addEventListener("submit", (e) => {
     phone: phoneValue,
     delivery_method: deliveryMethod,
     subscription_type: action === 'paid' ? 'paid' : 'free',
-  });
+  },originalText);
 });
 
 
