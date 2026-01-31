@@ -54,7 +54,7 @@ form.addEventListener("submit", async (e) => {
   const data = {
     name: form.name.value,
     email: form.email.value,
-    amount: Number(form.amount.value),
+    amount: Number(form.customAmount.value),
     is_anonymous: form.is_anonymous.checked
   };
 
