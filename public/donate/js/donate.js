@@ -58,7 +58,7 @@ form.addEventListener("submit", async (e) => {
     is_anonymous: form.is_anonymous.checked
   };
 
-  const res = await fetch("/api/create-donation", {
+  const res = await fetch("/api/donate", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
