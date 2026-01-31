@@ -1,4 +1,4 @@
-const isAnonymous = document.getElementById("isAnonymous");
+const isAnonymous = document.getElementById("is_anonymous");
 const nameInput = document.querySelector("input[name='name']");
 const emailInput = document.querySelector("input[name='email']");
 
