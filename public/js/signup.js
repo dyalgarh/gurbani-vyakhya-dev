@@ -12,9 +12,7 @@ async function submitSignup(payload, buttonText) {
       errorContainer.textContent = data.message || "An error occurred.";
       errorContainer.classList.remove("hidden");
 
-      // Re-enable button and restore text
-      submitButton.disabled = false;
-      submitButton.textContent = buttonText;
+      
       return
     }
     else{
@@ -29,7 +27,12 @@ async function submitSignup(payload, buttonText) {
     }
     
   } catch (e) {
-    alert('Network error')
+    errorContainer.textContent = "An error occurred.";
+    errorContainer.classList.remove("hidden");
+    // Re-enable button and restore text
+      submitButton.disabled = false;
+      submitButton.textContent = buttonText;
+
   }
 }
 const signupForm = document.getElementById("signupForm");
