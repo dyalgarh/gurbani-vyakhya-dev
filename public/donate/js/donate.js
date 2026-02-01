@@ -20,9 +20,6 @@ isAnonymous.addEventListener("change", () => {
   }
 });
 
-
-
-
 const buttons = document.querySelectorAll(".amount-btn");
     const customAmount = document.getElementById("customAmount");
 
@@ -43,8 +40,6 @@ const buttons = document.querySelectorAll(".amount-btn");
     customAmount.addEventListener("input", () => {
       buttons.forEach(b => b.classList.remove("bg-white", "text-black", "border-white"));
     });
-
-
 
 const form = document.getElementById("donateForm");
 
