@@ -1,5 +1,5 @@
 /* Signup Form Submission Function */
-async function submitSignup(payload, buttonText) {
+async function submitSignup(payload, buttonText, submitButton) {
     try {
         const res = await fetch('/api/signup', {
             method: 'POST',
@@ -70,7 +70,7 @@ signupForm.addEventListener("submit", (e) => {
         phone: phoneValue,
         delivery_method: deliveryMethod,
         subscription_type: action === 'paid' ? 'paid' : 'free',
-    }, originalText);
+    }, originalText, submitButton);
 });
 /* End of Signup Form Submission Logic */
 

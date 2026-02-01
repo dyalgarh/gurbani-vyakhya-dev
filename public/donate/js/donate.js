@@ -51,11 +51,12 @@ const form = document.getElementById("donateForm");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const isAnonymous = form.is_anonymous.checked;
   const data = {
-    name: form.name.value,
-    email: form.email.value,
+    name: isAnonymous ? "Anonymous" : form.name.value,
+    email: isAnonymous ? "anonymous@gurbanivyakhya.com" : form.email.value,
     amount: Number(form.customAmount.value),
-    is_anonymous: form.is_anonymous.checked
+    is_anonymous: isAnonymous
   };
 
   const res = await fetch("/api/donate", {
