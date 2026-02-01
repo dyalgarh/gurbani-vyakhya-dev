@@ -20,6 +20,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       },
       quantity: 1
     }],
+    metadata: {
+        type: "donation", 
+      },
     success_url: `${BASE_URL}/donation-thank-you`,
     cancel_url: `${BASE_URL}/cancel`,
   });

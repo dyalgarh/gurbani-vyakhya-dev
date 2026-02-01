@@ -5,7 +5,7 @@ import { supabase } from "../lib/db";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export const config = {
-  api: { bodyParser: false }, // Stripe needs raw body
+  api: { bodyParser: false }, // Stripe requires raw body
 };
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -34,24 +34,92 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
-  // Handle checkout session completed
+  // Only handle checkout session completed events
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
 
-    // Update donation status in Supabase
-    const { error } = await supabase
-      .from("donations")
-      .update({
-        status: "succeeded",
-        payment_intent_id: session.payment_intent,
-      })
-      .eq("stripe_session_id", session.id);
+    const type = session.metadata?.type;
 
-    if (error) {
-      console.error("Supabase update failed:", error.message);
-      return res.status(500).send("Database update failed");
+    try {
+      if (type === "donation") {
+        // ---- Donations ----
+        const { error } = await supabase
+          .from("donations")
+          .update({
+            status: "succeeded",
+            payment_intent_id: session.payment_intent,
+          })
+          .eq("stripe_session_id", session.id);
+
+        if (error) {
+          console.error("Supabase donation update failed:", error.message);
+          return res.status(500).send("Database update failed");
+        }
+
+      } else if (type === "subscription") {
+        // ---- Path Subscriptions ----
+        const userId = session.metadata?.user_id;
+        const pathId = session.metadata?.path_id;
+
+        if (!userId || !pathId) {
+          console.error("Missing subscription metadata");
+          return res.status(400).send("Missing subscription metadata");
+        }
+
+        // Fetch existing subscription
+        const { data: subscription } = await supabase
+          .from("subscriptions")
+          .select("id")
+          .eq("user_id", userId)
+          .eq("path_id", pathId)
+          .single();
+
+        if (!subscription) {
+          console.error("Subscription not found");
+          return res.status(400).send("Subscription not found");
+        }
+
+        // Insert payment record
+        const { error: paymentError } = await supabase.from("payments").insert({
+          user_id: userId,
+          path_id: pathId,
+          subscription_id: subscription.id,
+          stripe_payment_intent_id:
+            typeof session.payment_intent === "string"
+              ? session.payment_intent
+              : session.payment_intent?.id,
+          amount_cents: session.amount_total,
+          currency: session.currency,
+          payment_type: session.mode === "subscription" ? "recurring" : "fixed",
+          status: "paid",
+        });
+
+        if (paymentError) {
+          console.error("Failed to save subscription payment:", paymentError.message);
+          return res.status(500).send("Failed to save payment");
+        }
+
+        // Mark subscription as paid
+        const { error: subUpdateError } = await supabase
+          .from("subscriptions")
+          .update({ is_paid: true })
+          .eq("id", subscription.id);
+
+        if (subUpdateError) {
+          console.error("Failed to update subscription:", subUpdateError.message);
+          return res.status(500).send("Failed to update subscription");
+        }
+      } else {
+        console.warn("Unknown checkout session type:", type);
+      }
+
+      res.json({ received: true });
+    } catch (err) {
+      console.error("Error handling checkout session:", err);
+      res.status(500).send("Internal Server Error");
     }
+  } else {
+    // Other events can be ignored
+    res.json({ received: true });
   }
-
-  res.json({ received: true });
 }

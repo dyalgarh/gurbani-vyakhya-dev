@@ -137,9 +137,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           quantity: 1,
         }
       ],
-      success_url: `${BASE_URL}/thank-you?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${BASE_URL}/thank-you?p=true`,
       cancel_url: `${BASE_URL}/cancel`,
       metadata: {
+        type: "subscription",
         user_id: user.id,
         path_id,
         subscription_id: String(subscriptionId),

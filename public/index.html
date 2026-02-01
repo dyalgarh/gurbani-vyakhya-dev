@@ -67,61 +67,45 @@
 </head>
 
 <body class="bg-white text-gray-900">
-    <nav class="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
+   <nav class="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <div class="text-2xl font-semibold text-gray-900"><img class="w-24 h-auto" src="images/logo.png" alt="Gurbani Vyakhya Logo"/></div>
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="#understanding-gurbani" class="text-gray-600 hover:text-gray-900 transition-colors">Understanding Gurbani</a>
-                    <a href="#choose-path" class="text-gray-600 hover:text-gray-900 transition-colors">Paths</a>
-                    <a href="#how-it-works" class="text-gray-600 hover:text-gray-900 transition-colors">How It Works</a>
-                    <a href="#signup" class="text-gray-600 hover:text-gray-900 transition-colors">Begin Journey</a>
-                </div>
-                <!-- Language Toggle & Mobile Menu Button -->
-                <div class="relative flex items-center gap-3">
-  <!-- Language Button -->
-  <button
-    onclick="document.getElementById('lang-dropdown').classList.toggle('hidden')"
-    class="flex items-center gap-2 px-3 py-2 text-sm text-gray-600 hover:text-gray-900 transition-colors !rounded-button border border-gray-200 hover:border-gray-400 whitespace-nowrap"
-  >
-    <div class="w-4 h-4 flex items-center justify-center">
-      <i class="ri-global-line text-sm"></i>
-    </div>
-    <span class="hidden sm:inline">English</span>
-    <span class="sm:hidden">EN</span>
-  </button>
-
-  <!-- Dropdown -->
-  <div
-    id="lang-dropdown"
-    class="absolute right-0 top-full mt-2 w-32 bg-white border border-gray-200 rounded-md shadow-md hidden z-50"
-  >
-    <button class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">
-      ਪੰਜਾਬੀ
-    </button>
-  </div>
-
-  <!-- Mobile Menu Button (unchanged) -->
-  <button
-    id="mobile-menu-btn"
-    class="md:hidden w-10 h-10 flex items-center justify-center text-gray-600 hover:text-gray-900 transition-colors"
-  >
-    <i class="ri-menu-line text-xl"></i>
-  </button>
-</div>
+            
+            <!-- Logo (left) -->
+            <div class="text-2xl font-semibold text-gray-900">
+                <img class="w-24 h-auto" src="images/logo.png" alt="Gurbani Vyakhya Logo"/>
             </div>
+
+            <!-- Desktop Navigation (right) -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#understanding-gurbani" class="text-gray-600 hover:text-gray-900 transition-colors">Understanding Gurbani</a>
+                <a href="#choose-path" class="text-gray-600 hover:text-gray-900 transition-colors">Paths</a>
+                <a href="#faqs" class="text-gray-600 hover:text-gray-900 transition-colors">FAQs</a>
+                <a href="#signup" class="text-gray-600 hover:text-gray-900 transition-colors">Begin Journey</a>
+            </div>
+
+            <!-- Mobile Menu Button (right for mobile) -->
+            <div class="relative flex items-center gap-3 md:hidden">
+                <button
+                id="mobile-menu-btn"
+                class="w-10 h-10 flex items-center justify-center text-gray-600 hover:text-gray-900 transition-colors"
+                >
+                <i class="ri-menu-line text-xl"></i>
+                </button>
+            </div>
+            </div>
+
             <!-- Mobile Navigation Menu -->
             <div id="mobile-menu" class="md:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-200 shadow-lg transform -translate-y-full opacity-0 invisible transition-all duration-300">
-                <div class="px-6 py-4 space-y-4">
-                    <a href="#understanding-gurbani" class="block text-gray-600 hover:text-gray-900 transition-colors py-2 mobile-nav-link">Understanding Gurbani</a>
-                    <a href="#choose-path" class="block text-gray-600 hover:text-gray-900 transition-colors py-2 mobile-nav-link">Paths</a>
-                    <a href="#how-it-works" class="block text-gray-600 hover:text-gray-900 transition-colors py-2 mobile-nav-link">How It Works</a>
-                    <a href="#signup" class="block text-gray-600 hover:text-gray-900 transition-colors py-2 mobile-nav-link">Begin Journey</a>
-                </div>
+            <div class="px-6 py-4 space-y-4">
+                <a href="#understanding-gurbani" class="block text-gray-600 hover:text-gray-900 transition-colors py-2 mobile-nav-link">Understanding Gurbani</a>
+                <a href="#choose-path" class="block text-gray-600 hover:text-gray-900 transition-colors py-2 mobile-nav-link">Paths</a>
+                <a href="#faqs" class="block text-gray-600 hover:text-gray-900 transition-colors py-2 mobile-nav-link">FAQs</a>
+                <a href="#signup" class="block text-gray-600 hover:text-gray-900 transition-colors py-2 mobile-nav-link">Begin Journey</a>
+            </div>
             </div>
         </div>
-    </nav>
+        </nav>
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden" style="background-image: url('https://readdy.ai/api/search-image?query=minimalist%20black%20and%20white%20meditation%20space%20with%20dramatic%20shadows%20and%20light%2C%20zen%20garden%20with%20clean%20geometric%20lines%20and%20stark%20contrast%2C%20monochrome%20spiritual%20sanctuary%20with%20deep%20blacks%20and%20pure%20whites%2C%20contemplative%20atmosphere%20with%20strong%20architectural%20elements%2C%20modern%20minimalist%20design%20featuring%20smooth%20stone%20and%20clean%20surfaces%2C%20high%20contrast%20lighting%20creating%20peaceful%20dramatic%20mood&width=1920&height=1080&seq=hero-spiritual-bw&orientation=landscape'); background-size: cover; background-position: center;">
         <div class="absolute inset-0 bg-white/80"></div>
         <div class="relative z-10 w-full max-w-7xl mx-auto px-6">
@@ -173,7 +157,7 @@ Don’t just read Gurbani.<br>
             </div>
         </div>
     </section>
-    <section class="py-20 bg-white">
+    <section id="reasons" class="py-20 bg-white">
         <div class="max-w-6xl mx-auto px-6">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-light text-gray-900 mb-6">Why We Share Gurbani in Small Daily Reflections</h2>
@@ -433,13 +417,14 @@ Don’t just read Gurbani.<br>
                                 <!-- Country code dropdown -->
                                 <select name="countryCode" class="px-3 py-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-gray-900">
                                     <option value="+1">+1</option>
-                                    <option value="+91">+91</option>
-                                    <option value="+44">+44</option>
-                                    <!-- Add more as needed -->
                                 </select>
                                 <!-- Number input -->
                                 <input type="tel" name="phone" class="flex-1 px-4 py-3 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:border-gray-900" placeholder="Your phone number">
                             </div>
+                            <!-- Info message -->
+                            <p class="text-xs text-gray-500 mt-2">
+                                Due to high international messaging costs, our SMS service is available for US/Canada only. Other countries will be supported soon.
+                            </p>
                         </div>
 
                         <!-- Pricing & Support -->
@@ -448,8 +433,8 @@ Don’t just read Gurbani.<br>
                             <p class="text-sm text-gray-700 mb-4">
                                 Your contributions help us maintain this platform and create more paths. However, we believe Gurbani guidance should be accessible to all, regardless of financial situation.
                             </p>
+                            <div id="errorContainer" class="hidden text-red-600 text-sm mb-4"></div>
                             <div class="flex flex-col sm:flex-row gap-3">
-                                <div id="errorContainer" class="hidden text-red-600 text-sm mb-4"></div>
                                 <button type="submit" data-action="paid" class="flex-1 py-3 px-6 bg-primary text-white font-medium !rounded-button hover:bg-gray-800 transition-colors whitespace-nowrap">
                                     Support & Subscribe
                                 </button>
@@ -469,7 +454,7 @@ Don’t just read Gurbani.<br>
                     <div>
                         <div class="flex items-center gap-2 mb-4">
                             <i class="ri-information-line text-2xl"></i>
-                            <h3 class="text-xl font-medium">A Note on Our Reflections</h3>
+                            <h3 class="text-xl font-medium">A Note to Our Subscribers</h3>
                         </div>
                         <div class="space-y-4 text-sm leading-relaxed text-gray-300">
                             <p>
@@ -510,16 +495,16 @@ Don’t just read Gurbani.<br>
             </div>
             <div class="space-y-6 mb-12">
                 <p class="text-lg text-gray-700 leading-relaxed">
-                    Thank you for being here and taking a moment to reflect. This space exists with the intention of making Gurbani easier to understand, reflect upon, and gently bring into daily life.
+                    Thank you for pausing to reflect and connect with Gurbani. This space is created to make the wisdom of Gurbani more accessible, helping you understand, contemplate, and gently bring its teachings into daily life.
                 </p>
                 <p class="text-lg text-gray-700 leading-relaxed">
-                    You are encouraged to read each daily reflection slowly, and if possible, share it with your family. Sitting together, even for a few moments, and reflecting with children or elders can help these teachings take root naturally in daily life.
+                    We encourage you to read each daily reflection mindfully. If possible, share these reflections with your family or loved ones. Sitting together, even for a few quiet moments, allows the teachings of Gurbani to take root naturally in your daily life.
                 </p>
                 <p class="text-lg text-gray-700 leading-relaxed">
-                    If a reflection resonates with you, feel free to share it in your family groups or with loved ones. You may also invite them to join this journey, so understanding and reflection can grow together.
+                    Feel free to share it in your family groups or with friends. You may also invite others to join this journey, so the understanding and practice of Gurbani can grow together.
                 </p>
                 <p class="text-lg text-gray-700 leading-relaxed">
-                    Any support offered helps keep this platform running and allows these reflections to be shared with care and continuity. There is no obligation to contribute. Your presence here itself is deeply valued.
+                    Any support you offer helps sustain this platform and ensures these reflections can continue to be shared with care and continuity. There is no obligation to contribute — your presence here and your engagement with Gurbani is deeply valued.
                 </p>
             </div>
             <a href="/donate"><button class="px-8 py-4 bg-black text-white font-medium !rounded-button hover:bg-gray-800 transition-colors whitespace-nowrap">
@@ -538,164 +523,15 @@ Don’t just read Gurbani.<br>
         <div class="max-w-6xl mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
                 <div class="text-gray-600 text-sm">
-                    © 2026 Spiritual Path. All rights reserved.
+                    © 2026 Gurbani Vyakhya. All rights reserved.
                 </div>
                 <div class="flex items-center gap-8">
                     <a href="#faqs" class="text-gray-600 hover:text-gray-900 text-sm transition-colors">FAQs</a>
                     <a href="mailto:infor@gurbanivyakhya.com" class="text-gray-600 hover:text-gray-900 text-sm transition-colors">Contact</a>
                     <a href="privacy" class="text-gray-600 hover:text-gray-900 text-sm transition-colors">Privacy</a>
-                    <button class="flex items-center gap-2 px-3 py-1.5 text-xs text-gray-500 hover:text-gray-700 transition-colors border border-gray-200 rounded-button">
-                        <div class="w-3 h-3 flex items-center justify-center">
-                            <i class="ri-global-line text-xs"></i>
-                        </div>
-                        English | ਪੰਜਾਬੀ
-                    </button>
                 </div>
             </div>
         </div>
     </footer>
-    <script id="path-selection">
-document.addEventListener('DOMContentLoaded', function () {
-  const pathCards = document.querySelectorAll('.begin-button');
-  const signupSection = document.getElementById('signup');
-  const pathSelect = document.querySelector('select[name="path"]');
-
-  pathCards.forEach(card => {
-    card.addEventListener('click', function () {
-      pathCards.forEach(c => c.classList.remove('ring-2', 'ring-primary'));
-      this.classList.add('ring-2', 'ring-primary');
-
-      // ✅ select path in dropdown
-      const pathId = this.dataset.pathId;
-      if (pathId) {
-        pathSelect.value = pathId;
-        pathSelect.dispatchEvent(new Event('change'));
-      }
-
-      setTimeout(() => {
-        signupSection.scrollIntoView({ behavior: 'smooth' });
-      }, 300);
-    });
-  });
-});
-</script>
-    <script id="radio-buttons">
-        document.addEventListener('DOMContentLoaded', function() {
-        const radioInputs = document.querySelectorAll('.delivery-radio');
-        radioInputs.forEach(radio => {
-        radio.addEventListener('change', function() {
-        radioInputs.forEach(r => {
-        const dot = r.parentElement.querySelector('.radio-dot');
-        const custom = r.parentElement.querySelector('.radio-custom');
-        if (r.checked) {
-        dot.style.opacity = '1';
-        custom.style.borderColor = '#000000';
-        } else {
-        dot.style.opacity = '0';
-        custom.style.borderColor = '#d1d5db';
-        }
-        });
-        });
-        });
-        radioInputs[0].dispatchEvent(new Event('change'));
-        });
-    </script>
-    <script id="navigation-mobile">
-        document.addEventListener('DOMContentLoaded', function() {
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-        mobileMenuBtn.addEventListener('click', function() {
-        const isOpen = mobileMenu.style.transform === 'translateY(0px)';
-        if (isOpen) {
-        mobileMenu.style.transform = 'translateY(-100%)';
-        mobileMenu.style.opacity = '0';
-        setTimeout(() => {
-        mobileMenu.style.visibility = 'hidden';
-        }, 300);
-        mobileMenuBtn.querySelector('i').className = 'ri-menu-line text-xl';
-        } else {
-        mobileMenu.style.visibility = 'visible';
-        mobileMenu.style.transform = 'translateY(0px)';
-        mobileMenu.style.opacity = '1';
-        mobileMenuBtn.querySelector('i').className = 'ri-close-line text-xl';
-        }
-        });
-        mobileNavLinks.forEach(link => {
-        link.addEventListener('click', function() {
-        mobileMenu.style.transform = 'translateY(-100%)';
-        mobileMenu.style.opacity = '0';
-        setTimeout(() => {
-        mobileMenu.style.visibility = 'hidden';
-        }, 300);
-        mobileMenuBtn.querySelector('i').className = 'ri-menu-line text-xl';
-        });
-        });
-        });
-    </script>
-    <script id="smooth-scrolling">
-        document.addEventListener('DOMContentLoaded', function() {
-        const allNavLinks = document.querySelectorAll('a[href^="#"]');
-        const choosePathBtns = document.querySelectorAll('button');
-        allNavLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-        targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-        });
-        }
-        });
-        });
-        });
-    </script>
-    <script id="delivery-preference">
-  const deliveryRadios = document.querySelectorAll(".delivery-radio");
-  const emailField = document.getElementById("emailField");
-  const phoneField = document.getElementById("phoneField");
-
-  deliveryRadios.forEach(radio => {
-    radio.addEventListener("change", () => {
-      if (radio.value === "email" && radio.checked) {
-        emailField.classList.remove("hidden");
-        emailField.querySelector("input").required = true;
-
-        phoneField.classList.add("hidden");
-        phoneField.querySelector("input[name='phone']").required = false;
-      } else if (radio.value === "sms" && radio.checked) {
-        phoneField.classList.remove("hidden");
-        phoneField.querySelector("input[name='phone']").required = true;
-
-        emailField.classList.add("hidden");
-        emailField.querySelector("input").required = false;
-      }
-    });
-  });
-
-  // Initialize based on checked radio
-  const checkedRadio = document.querySelector(".delivery-radio:checked");
-  if (checkedRadio) {
-    checkedRadio.dispatchEvent(new Event("change"));
-  }
-</script>
-<script>
-  const pathSelect = document.querySelector('select[name="path"]');
-  const paidButton = document.querySelector('button[data-action="paid"]');
-
-  pathSelect.addEventListener('change', () => {
-    const selectedOption = pathSelect.options[pathSelect.selectedIndex];
-    const price = selectedOption.dataset.price;
-
-    if (price) {
-      paidButton.textContent = `Support & Subscribe (${price})`;
-    } else {
-      paidButton.textContent = 'Support & Subscribe';
-    }
-  });
-</script>
 </body>
-
 </html>
