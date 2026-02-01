@@ -148,6 +148,21 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       },
     });
 
+    // Insert payment record
+        const { error: paymentError } = await supabase.from("payments").insert({
+          user_id: user.id,
+          path_id: path_id,
+          subscription_id: subscriptionId,
+          stripe_session_id: session.id,
+          status: "pending",
+          payment_type: session.mode === "subscription" ? "recurring-subscription" : "fixed-subscription",
+        });
+        
+        if (paymentError) {
+          console.error("Failed to save subscription payment:", paymentError.message);
+          return res.status(500).send("Failed to save payment");
+        }
+
     return res.json({
       success: true,
       checkout_url: session.url

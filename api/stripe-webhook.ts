@@ -41,13 +41,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const type = session.metadata?.type;
 
     try {
-      if (type === "donation") {
-        // ---- Donations ----
+
         const { error } = await supabase
-          .from("donations")
+          .from("payments")
           .update({
             status: "succeeded",
-            payment_intent_id: session.payment_intent,
+            stripe_payment_intent_id: session.payment_intent,
+            currency : session.currency,
+            amount_cents : session.amount_total,
           })
           .eq("stripe_session_id", session.id);
 
@@ -56,7 +57,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           return res.status(500).send("Database update failed");
         }
 
-      } else if (type === "subscription") {
+      if (type === "subscription") {
         // ---- Path Subscriptions ----
         const userId = session.metadata?.user_id;
         const pathId = session.metadata?.path_id;
@@ -77,26 +78,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         if (!subscription) {
           console.error("Subscription not found");
           return res.status(400).send("Subscription not found");
-        }
-
-        // Insert payment record
-        const { error: paymentError } = await supabase.from("payments").insert({
-          user_id: userId,
-          path_id: pathId,
-          subscription_id: subscription.id,
-          stripe_payment_intent_id:
-            typeof session.payment_intent === "string"
-              ? session.payment_intent
-              : session.payment_intent?.id,
-          amount_cents: session.amount_total,
-          currency: session.currency,
-          payment_type: session.mode === "subscription" ? "recurring" : "fixed",
-          status: "paid",
-        });
-
-        if (paymentError) {
-          console.error("Failed to save subscription payment:", paymentError.message);
-          return res.status(500).send("Failed to save payment");
         }
 
         // Mark subscription as paid

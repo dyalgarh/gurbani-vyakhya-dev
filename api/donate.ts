@@ -28,14 +28,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   });
 
   // save pending donation in Supabase
-  await supabase.from("donations").insert({
+  await supabase.from("payments").insert({
     name,
     email,
-    amount: amount * 100,
-    currency: "CAD",
     status: "pending",
     stripe_session_id: session.id,
-    is_anonymous
+    payment_type: "donation",
   });
 
   res.json({success: true, url: session.url });
