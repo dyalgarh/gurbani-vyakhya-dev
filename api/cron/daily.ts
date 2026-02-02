@@ -192,7 +192,7 @@ export default async function handler(
           </html>`
         );
       } else if (sub.delivery_method === "sms" && user.phone) {
-        await sendSMS(user.phone, `Today's Gurbani message 🙏\n${link} \n Unsubscribe: https://tinyurl.com/gvunsb/${sub.unsubscribe_token}`);
+        await sendSMS(user.phone, `Today's Gurbani message\n${link} \nStop: https://tinyurl.com/gvunsb/${sub.unsubscribe_token}`);
       } else {
         deliveryStatus = "skipped";
       }
