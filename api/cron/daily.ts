@@ -74,7 +74,8 @@ export default async function handler(
         continue;
       }
 
-      let link = `${BASE_URL}/todays-path/${sub.secure_token}`;
+      //let link = `${BASE_URL}/todays-path/${sub.secure_token}`;
+      let link = `https://tinyurl.com/gvdptm/${sub.secure_token}`;
       if (content_type === "progressive") {
         link = `${link}/${sub.current_day}`;
       }
@@ -191,7 +192,7 @@ export default async function handler(
           </html>`
         );
       } else if (sub.delivery_method === "sms" && user.phone) {
-        await sendSMS(user.phone, `Your today's Gurbani message 🙏\n${link} \n Unsubscribe: ${BASE_URL}/unsubscribe/${sub.unsubscribe_token}`);
+        await sendSMS(user.phone, `Today's Gurbani message 🙏\n${link} \n Unsubscribe: https://tinyurl.com/gvunsb/${sub.unsubscribe_token}`);
       } else {
         deliveryStatus = "skipped";
       }
