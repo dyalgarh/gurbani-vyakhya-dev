@@ -27,14 +27,14 @@ export default async function handler(
         paths(content_type)
       `)
       .eq("secure_token", tokenRaw)
-      .single();
+      .maybeSingle();
 
     if (subError) {
       return res.status(500).json({ ok: false, message: subError.message });
     }
 
     if (!sub || sub.status !== "active") {
-      return res.json({ ok: false, message: "Not subscribed" });
+      return res.json({ ok: false, message: "You are not subscribed or your subscription is inactive." });
     }
 
 
@@ -50,7 +50,7 @@ export default async function handler(
       }
 
       if (dayNum > currentDay) {
-        return res.json({ ok: false, message: "Available later" });
+        return res.json({ ok: false, message: "Path is not yet available for this day." });
       }
 
       const { data: content } = await supabase

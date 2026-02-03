@@ -1,10 +1,10 @@
 import { createClient } from "@supabase/supabase-js";
 
-if (!process.env.SUPABASE_URL || !process.env.SUPABASE_PUBLISHABLE_KEY) {
+if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SECRET_KEY) {
   throw new Error("Missing Supabase environment variables");
 }
 
 export const supabase = createClient(
   process.env.SUPABASE_URL,
-  process.env.SUPABASE_PUBLISHABLE_KEY
+  process.env.SUPABASE_SECRET_KEY
 );

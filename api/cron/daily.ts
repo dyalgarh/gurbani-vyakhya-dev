@@ -76,6 +76,7 @@ export default async function handler(
 
       //let link = `${BASE_URL}/todays-path/${sub.secure_token}`;
       let link = `https://tinyurl.com/gvdptm/${sub.secure_token}`;
+      const unsubscribeLink = `https://tinyurl.com/gvunsb/${sub.unsubscribe_token}`;
       if (content_type === "progressive") {
         link = `${link}/${sub.current_day}`;
       }
@@ -98,101 +99,95 @@ export default async function handler(
           user.email,
           `Your today's Gurbani message - ${pathContent?.gurbani_header || ":"}`,
           `<!DOCTYPE html>
-          <html lang="en">
+          <html>
+            <head>
+              <meta charset="UTF-8" />
+              <title>Today's Gurbani</title>
+            </head>
+            <body style="margin:0;padding:0;background:#f9fafb;font-family:Arial, sans-serif;">
+              <table width="100%" cellpadding="0" cellspacing="0" style="background:#f9fafb;padding:20px;">
+                <tr>
+                  <td align="center">
 
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>Understanding Gurbani</title>
-              <script src="https://cdn.tailwindcss.com/3.4.16"></script>
-              <link rel="preconnect" href="https://fonts.googleapis.com">
-              <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-              <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-              <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
-              <script>
-                  tailwind.config = {
-                  theme: {
-                  extend: {
-                  colors: {
-                  primary: '#000000',
-                  secondary: '#374151'
-                  },
-                  borderRadius: {
-                  'none': '0px',
-                  'sm': '4px',
-                  DEFAULT: '8px',
-                  'md': '12px',
-                  'lg': '16px',
-                  'xl': '20px',
-                  '2xl': '24px',
-                  '3xl': '32px',
-                  'full': '9999px',
-                  'button': '8px'
-                  },
-                  fontFamily: {
-                  'inter': ['Inter', 'sans-serif']
-                  }
-                  }
-                  }
-                  }
-              </script>
-              <style>
-                  :where([class^="ri-"])::before {
-                  content: "\f3c2";
-                  }
-                  body {
-                  font-family: 'Inter', sans-serif;
-                  }
-              </style>
-              <script src="/todays-path/js/todays-path.js" defer></script>
-          </head>
+                    <!-- Read on Web -->
+                    <table width="600" cellpadding="0" cellspacing="0" style="margin-bottom:10px;">
+                      <tr>
+                        <td align="right" style="font-size:12px;color:#6b7280;">
+                          Having trouble reading this email?
+                          <a href="${link}" style="color:#111827;text-decoration:underline;">
+                            Read on the web
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
 
-          <body class="bg-white text-gray-900">
-              <!-- Page Content (hidden initially) -->
-              <div id="pageContent">
-                  <section class="bg-white">
-                      <div class="max-w-6xl mx-auto bg-white rounded-lg shadow-sm p-8">
-                          <div class="text-center mb-6">
-                              <h3 class="text-xl font-medium text-gray-900 mb-2">Today's Path</h3>
-                              <p id="gurbani_header" class="text-sm text-gray-600">${ pathContent?.gurbani_header || "" }</p>
-                          </div>
-                          <div class="space-y-6">
-                              <div>
-                                  <p id="gurbani" class="text-black text-2xl italic text-center bg-gray-50 p-4 rounded border-l-4 border-gray-800">
-                                  ${ pathContent?.gurbani || "" }
-                                  </p>
-                              </div>
-                              <div>
-                                  <h4 class="font-medium text-2xl text-gray-900 mb-2 flex items-center gap-2">
-                                  <div class="w-4 h-4 flex items-center justify-center">
-                                  <i class="ri-lightbulb-line text-gray-600"></i>
-                                  </div>
-                                  ਪੰਜਾਬੀ ਵਿੱਚ ਵਿਆਖਿਆ
-                                  </h4>
-                                  <p id="pb" class="text-gray-800">
-                                      ${ pathContent?.meaning_pb || "" }
-                                  </p>
-                              </div>
-                              <div>
-                                  <h4 class="font-medium text-2xl text-gray-900 mb-2 flex items-center gap-2">
-                                  <div class="w-4 h-4 flex items-center justify-center">
-                                  <i class="ri-lightbulb-line text-gray-800"></i>
-                                  </div>
-                                  Explanation in English
-                                  </h4>
-                                  <p id="en" class="text-gray-800">
-                                      ${ pathContent?.meaning_en || "" }
-                                  </p>
-                              </div>
-                          </div>
-                      </div>
-                  </section>
-              </div>
-          </body>
+                    <!-- Main Card -->
+                    <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:8px;padding:24px;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+
+                      <tr>
+                        <td align="center" style="padding-bottom:16px;">
+                          <h3 style="margin:0;font-size:20px;color:#111827;">
+                            Today's Path
+                          </h3>
+                          <p style="margin:6px 0 0;font-size:13px;color:#6b7280;">
+                            ${pathContent?.gurbani_header || ""}
+                          </p>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td style="padding:12px 0;">
+                          <p style="margin:0;font-size:20px;font-style:italic;text-align:center;background:#f3f4f6;padding:16px;border-left:4px solid #111827;border-radius:6px;">
+                            ${pathContent?.gurbani || ""}
+                          </p>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td style="padding-top:20px;">
+                          <h4 style="margin:0 0 8px;font-size:18px;color:#111827;">
+                            ਪੰਜਾਬੀ ਵਿੱਚ ਵਿਆਖਿਆ
+                          </h4>
+                          <p style="margin:0;font-size:15px;line-height:1.6;color:#1f2937;">
+                            ${pathContent?.meaning_pb || ""}
+                          </p>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td style="padding-top:20px;">
+                          <h4 style="margin:0 0 8px;font-size:18px;color:#111827;">
+                            Explanation in English
+                          </h4>
+                          <p style="margin:0;font-size:15px;line-height:1.6;color:#1f2937;">
+                            ${pathContent?.meaning_en || ""}
+                          </p>
+                        </td>
+                      </tr>
+
+                    </table>
+
+                    <!-- Footer -->
+                    <table width="600" cellpadding="0" cellspacing="0" style="margin-top:16px;">
+                      <tr>
+                        <td align="center" style="font-size:12px;color:#6b7280;">
+                          You’re receiving this because you subscribed to Daily Gurbani.  
+                          <br />
+                          <a href="${unsubscribeLink}" style="color:#6b7280;text-decoration:underline;">
+                            Unsubscribe
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+
+                  </td>
+                </tr>
+              </table>
+            </body>
           </html>`
         );
       } else if (sub.delivery_method === "sms" && user.phone) {
-        await sendSMS(user.phone, `Today's Gurbani message\n${link} \nStop: https://tinyurl.com/gvunsb/${sub.unsubscribe_token}`);
+        await sendSMS(user.phone, `Today's Gurbani message\n${link} \nStop: ${unsubscribeLink}`);
       } else {
         deliveryStatus = "skipped";
       }

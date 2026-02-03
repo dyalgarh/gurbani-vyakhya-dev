@@ -49,7 +49,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     .single();
 
     if (existingSub && existingSub.status === "active") {
-      return res.status(200).json({ success: false, message: "You’re already subscribed to this path. If you’re not seeing any emails, please check your spam folder." });
+      return res.status(200).json({ success: false, message: "You’re already subscribed to this Paath. If you’re not seeing any emails, please check your spam folder." });
     }
 
   let subscriptionId = "";
@@ -95,7 +95,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           );
       }
     if (delivery_method === "sms" && phone) {
-      const smsText = pathContent?.thank_you_sms_text  || "Thank you for subscribing 🙏 You'll start receiving the daily Path from tomorrow.";
+      const smsText = pathContent?.thank_you_sms_text  || "Thank you for subscribing 🙏 You'll start receiving the daily Paath from tomorrow.";
       await sendSMS(phone, smsText);
     }
 
@@ -129,7 +129,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Create Stripe Checkout session
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
       mode: path.payment_type === "recurring" ? "subscription" : "payment",
       line_items: [
         {
