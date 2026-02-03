@@ -29,7 +29,7 @@ const buttons = document.querySelectorAll(".amount-btn");
         buttons.forEach(b => b.classList.remove("bg-white", "text-black", "border-white"));
 
         // Highlight selected
-        btn.classList.add("bg-white", "text-black", "border-white");
+        btn.classList.add("bg-black", "text-white", "border-white");
 
         // Set value
         customAmount.value = btn.dataset.amount;
@@ -38,7 +38,7 @@ const buttons = document.querySelectorAll(".amount-btn");
 
     // If user types custom amount, remove highlight from preset buttons
     customAmount.addEventListener("input", () => {
-      buttons.forEach(b => b.classList.remove("bg-white", "text-black", "border-white"));
+      buttons.forEach(b => b.classList.remove("bg-black", "text-white", "border-white"));
     });
 
 const form = document.getElementById("donateForm");

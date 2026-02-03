@@ -22,6 +22,8 @@ export default async function handler(
   }
 
   const BASE_URL = process.env.BASE_URL!;
+  const DAILY_MESSAGE_SHORT_URL = process.env.DAILY_MESSAGE_SHORT_URL!;
+  const UNSUBSCRIBE_SHORT_URL = process.env.UNSUBSCRIBE_SHORT_URL!;
 
   // 2️⃣ Fetch active subscriptions
   const { data: subs, error: subsError } = await supabase
@@ -74,9 +76,8 @@ export default async function handler(
         continue;
       }
 
-      //let link = `${BASE_URL}/todays-path/${sub.secure_token}`;
-      let link = `https://tinyurl.com/gvdptm/${sub.secure_token}`;
-      const unsubscribeLink = `https://tinyurl.com/gvunsb/${sub.unsubscribe_token}`;
+      let link = `${DAILY_MESSAGE_SHORT_URL}/${sub.secure_token}`;
+      const unsubscribeLink = `${UNSUBSCRIBE_SHORT_URL}/${sub.unsubscribe_token}`;
       if (content_type === "progressive") {
         link = `${link}/${sub.current_day}`;
       }
@@ -95,9 +96,15 @@ export default async function handler(
         .eq("is_active", true)
         .maybeSingle();
 
+        const gurbaniHeaderText = pathContent?.gurbani_header
+        ? pathContent.gurbani_header.replace(/<[^>]*>/g, "")
+        : "";
+
+        const emailSubject = `Your today's Gurbani message - ${gurbaniHeaderText}`;
+
         await sendEmail(
           user.email,
-          `Your today's Gurbani message - ${pathContent?.gurbani_header || ":"}`,
+          emailSubject,
           `<!DOCTYPE html>
           <html>
             <head>
