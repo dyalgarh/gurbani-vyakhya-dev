@@ -198,7 +198,7 @@ export default async function handler(
           </html>`
         );
       } else if (sub.delivery_method === "sms" && user.phone) {
-        await sendSMS(user.phone, `Today's Gurbani message\n${link} \nStop: ${unsubscribeLink}`);
+        await sendSMS(user.phone, `Today's Paath:\n${link} \nReply STOP to unsubscribe`);
       } else {
         deliveryStatus = "skipped";
       }
