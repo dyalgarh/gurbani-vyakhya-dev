@@ -101,7 +101,7 @@ export default async function handler(
         .maybeSingle();
 
         const gurbaniHeaderText = pathContent?.gurbani_header
-        ? pathContent.gurbani_header.replace(/<[^>]*>/g, "")
+        ? pathContent.gurbani_header.replace(/<[^>]*>/g, " ")
         : "";
 
         const emailSubject = `Your today's Gurbani message - ${gurbaniHeaderText}`;
