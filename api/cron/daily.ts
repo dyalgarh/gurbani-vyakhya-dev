@@ -10,6 +10,10 @@ export default async function handler(
   const isCron = req.headers["x-vercel-cron"] === "1";
   const isDev = process.env.CURRENT_ENV !== "production";
 
+  if (process.env.CRON_ENABLED !== "true") {
+    return res.status(200).json({ ok: false, message: "Cron disabled" });
+  }
+
   if (!isCron && !isDev) {
     return res.status(401).json({ ok: false, message: "Unauthorized" });
   }
