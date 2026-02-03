@@ -26,7 +26,7 @@ const buttons = document.querySelectorAll(".amount-btn");
     buttons.forEach(btn => {
       btn.addEventListener("click", () => {
         // Clear all highlights
-        buttons.forEach(b => b.classList.remove("bg-white", "text-black", "border-white"));
+        buttons.forEach(b => b.classList.remove("bg-black", "text-white", "border-white"));
 
         // Highlight selected
         btn.classList.add("bg-black", "text-white", "border-white");
