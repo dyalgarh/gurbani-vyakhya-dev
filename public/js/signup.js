@@ -244,3 +244,16 @@ document.addEventListener('DOMContentLoaded', function() {
     radioInputs[0].dispatchEvent(new Event('change'));
 });
 /* End of Custom Radio Button Logic */
+
+/* Terms and Conditions Checkbox Logic */
+const termsCheckbox = document.getElementById('termsCheckbox');
+  const submitButtons = document.querySelectorAll('#signupForm button[type="submit"]');
+
+  function toggleSubmitButtons() {
+    submitButtons.forEach(btn => {
+      btn.disabled = !termsCheckbox.checked;
+    });
+  }
+
+  termsCheckbox.addEventListener('change', toggleSubmitButtons);
+  /* End of Terms and Conditions Checkbox Logic */

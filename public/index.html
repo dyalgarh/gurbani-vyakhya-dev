@@ -439,6 +439,20 @@ Don’t just read Gurbani.<br>
                             </p>
                         </div>
 
+                        <div class="mt-6">
+                            <label class="flex items-start gap-3 text-sm text-gray-700 cursor-pointer">
+                                <input id="termsCheckbox" type="checkbox" class="mt-1 w-4 h-4 border-gray-300 rounded focus:ring-2 focus:ring-gray-200">
+                                <span>
+                                I agree to receive daily Gurbani messages via SMS and/or email. Message frequency: 1/day.  
+                                Reply STOP to unsubscribe.  
+                                I agree to the 
+                                <a href="/terms-and-conditions" target="_blank" class="underline text-gray-900 hover:text-black">Terms & Conditions</a> 
+                                and 
+                                <a href="/privacy-policy" target="_blank" class="underline text-gray-900 hover:text-black">Privacy Policy</a>.
+                                </span>
+                            </label>
+                        </div>
+
                         <!-- Pricing & Support -->
                         <div class="bg-gray-50 p-6 rounded-lg">
                             <h3 class="font-medium text-gray-900 mb-3">Pricing & Support</h3>
@@ -447,12 +461,18 @@ Don’t just read Gurbani.<br>
                             </p>
                             <div id="errorContainer" class="hidden text-red-600 text-sm mb-4"></div>
                             <div class="flex flex-col sm:flex-row gap-3">
-                                <button type="submit" data-action="free" class="flex-1 py-3 px-6 border-2 border-gray-300 text-gray-700 font-medium !rounded-button hover:border-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap">
-                                    Subscribe for Free
-                                </button>
-                                <button type="submit" data-action="paid" class="flex-1 py-3 px-6 bg-primary text-white font-medium !rounded-button hover:bg-gray-800 transition-colors whitespace-nowrap">
-                                    Support & Subscribe
-                                </button>
+                                <button type="submit" data-action="free" disabled
+  class="flex-1 py-3 px-6 border-2 border-gray-300 text-gray-700 font-medium !rounded-button
+         hover:border-gray-600 hover:bg-gray-50 transition-colors whitespace-nowrap
+         disabled:opacity-50 disabled:cursor-not-allowed">
+  Subscribe for Free
+</button>
+                                <button type="submit" data-action="paid" disabled
+  class="flex-1 py-3 px-6 bg-primary text-white font-medium !rounded-button
+         hover:bg-gray-800 transition-colors whitespace-nowrap
+         disabled:opacity-50 disabled:cursor-not-allowed">
+  Support & Subscribe
+</button>
                             </div>
                         </div>
                     </div>
