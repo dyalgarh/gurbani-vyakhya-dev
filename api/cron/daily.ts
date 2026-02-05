@@ -9,6 +9,7 @@ export default async function handler(
 ) {
   const isCron = req.headers["x-vercel-cron"] === "1";
   const isDev = process.env.CURRENT_ENV !== "production";
+  const DAILY_PAATH_EMAIL = process.env.DAILY_PAATH_EMAIL!;
 
   if (process.env.CRON_ENABLED !== "true") {
     return res.status(200).json({ ok: false, message: "Cron disabled" });
@@ -107,6 +108,7 @@ export default async function handler(
         const emailSubject = `Your today's Gurbani message - ${gurbaniHeaderText}`;
 
         await sendEmail(
+          DAILY_PAATH_EMAIL,
           user.email,
           emailSubject,
           `<!DOCTYPE html>

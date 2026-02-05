@@ -8,6 +8,7 @@ import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 const BASE_URL = process.env.BASE_URL!;
+const SIGN_UP_EMAIL = process.env.SIGN_UP_EMAIL!;
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== "POST") {
@@ -89,6 +90,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
     if (delivery_method === "email" && email) {
       await sendEmail(
+        SIGN_UP_EMAIL,
         email,
           pathContent?.thank_you_email_subject || "Thank you for subscribing 🙏",
           pathContent?.thank_you_email_body_html || "<p>Your daily Gurbani will start tomorrow.</p>"
